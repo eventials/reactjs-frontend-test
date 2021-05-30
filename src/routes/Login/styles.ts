@@ -12,6 +12,7 @@ export const Form = styled.form`
 
   h1 {
     margin-bottom: 1.5rem;
+    color: var(--red);
   }
 
   input {
@@ -29,11 +30,12 @@ export const Form = styled.form`
   button {
     width: 200px;
     height: 40px;
-    border: initial;
-    background: var(--blue);
-    color: #fff;
+    border: 1px solid var(--purple);
+    background: var(--purple);
+    color: var(--red);
     font-size: 1.1rem;
     transition: filter 0.2s;
+    font-weight: 700;
 
     &:hover {
       filter: brightness(1.25);
