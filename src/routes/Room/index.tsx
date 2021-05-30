@@ -1,6 +1,7 @@
-import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+
+import { Container } from './styles';
 
 const cookies = new Cookies();
 
@@ -13,6 +14,8 @@ export function Room() {
   }
 
   return (
-    <h1>Room</h1>
+    <Container>
+      <h1>Room</h1>
+    </Container>
   );
 }

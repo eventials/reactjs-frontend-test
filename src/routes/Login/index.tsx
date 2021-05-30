@@ -1,6 +1,8 @@
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+
+import { Form } from './styles';
 
 const cookies = new Cookies();
 
@@ -21,8 +23,8 @@ export function Login() {
   }
   
   return (
-    <form onSubmit={handleLogin}>
-      <h1>Login</h1>
+    <Form onSubmit={handleLogin}>
+      <h1>Bem-Vindo</h1>
       <input 
         type="text"
         placeholder="Seu nome"
@@ -31,6 +33,6 @@ export function Login() {
       />
 
       <button type="submit">Entrar na sala</button>
-    </form>
+    </Form>
   );
 }

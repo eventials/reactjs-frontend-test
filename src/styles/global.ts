@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    --background: #d4dce1;
+    --blue: #2966cd;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -18,10 +23,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: var(--background);
     -webkit-font-smoothing: antialiased;
   }
 
   button {
     cursor: pointer;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+  }
+
+  p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
   }
 `
