@@ -1,5 +1,8 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 export function Login() {
   const [name, setName] = useState('');
@@ -7,6 +10,8 @@ export function Login() {
 
   function handleLogin(event: SyntheticEvent) {
     event.preventDefault();
+
+    cookies.set("auth_token", name, { path: '/' });
 
     setRedirect(true);
   }
