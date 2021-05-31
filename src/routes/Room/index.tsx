@@ -16,7 +16,11 @@ interface PlayerProps {
   name: string; 
 }
 
-export function Room() {
+interface RoomProps {
+  onOpenNewPlayerModal: () => void;
+}
+
+export function Room({ onOpenNewPlayerModal }: RoomProps) {
 
   const isAuthenticated = cookies.get("auth_token") !== undefined;
   const ownerName = cookies.get("auth_token");
@@ -40,6 +44,9 @@ export function Room() {
     const { key } = event;
 
     if (key === 'i') {
+
+      onOpenNewPlayerModal();
+
       const player: PlayerProps = {
         id: uuid(),
         name: '',
