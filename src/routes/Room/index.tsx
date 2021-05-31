@@ -21,10 +21,18 @@ export function Room() {
   const isAuthenticated = cookies.get("auth_token") !== undefined;
   const ownerName = cookies.get("auth_token");
 
-  const [players, setPlayers] = useState<PlayerProps[]>([{
-    id: uuid(),
-    name: ownerName,
-  }]);
+  const [players, setPlayers] = useState<PlayerProps[]>(() => {
+    const storagedRepositories = localStorage.getItem('@EventialsMeeting:players');
+
+    if(storagedRepositories) {
+      return JSON.parse(storagedRepositories);
+    } else {
+      return [{
+        id: uuid(),
+        name: ownerName,
+      }]
+    }
+  });
 
   const [redirect, setRedirect] = useState(false);
 
@@ -49,8 +57,16 @@ export function Room() {
     };
   }, [handleUserKeyPress]);
 
+  useEffect(() => {
+    localStorage.setItem(
+      '@EventialsMeeting:players', 
+      JSON.stringify(players),
+    );
+  }, [players])
+
   function handleEndMeeting() {
     cookies.remove("auth_token");
+    localStorage.removeItem('@EventialsMeeting:players');
     setRedirect(true);
   }
 
