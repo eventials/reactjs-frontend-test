@@ -26,6 +26,8 @@ export function Room() {
     name: ownerName,
   }]);
 
+  const [redirect, setRedirect] = useState(false);
+
   const handleUserKeyPress = useCallback(event => {
     const { key } = event;
 
@@ -47,7 +49,12 @@ export function Room() {
     };
   }, [handleUserKeyPress]);
 
-  if (!isAuthenticated) {
+  function handleEndMeeting() {
+    cookies.remove("auth_token");
+    setRedirect(true);
+  }
+
+  if (!isAuthenticated || redirect) {
     return <Redirect to="/" />
   }
 
@@ -66,7 +73,7 @@ export function Room() {
       </Players>
 
       <footer>
-        <button>
+        <button onClick={handleEndMeeting}>
           <FaPowerOff size={30} />
         </button>
       </footer>
