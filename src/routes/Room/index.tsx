@@ -1,5 +1,7 @@
+import { useCallback, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import { v4 as uuid } from 'uuid';
 
 import { Container, Players } from './styles';
 
@@ -9,15 +11,45 @@ import avatarImg from '../../assets/avatar.jpg';
 
 const cookies = new Cookies();
 
+interface PlayerProps {
+  id: string;
+  name: string; 
+}
+
 export function Room() {
 
   const isAuthenticated = cookies.get("auth_token") !== undefined;
+  const ownerName = cookies.get("auth_token");
+
+  const [players, setPlayers] = useState<PlayerProps[]>([{
+    id: uuid(),
+    name: ownerName,
+  }]);
+
+  const handleUserKeyPress = useCallback(event => {
+    const { key } = event;
+
+    if (key === 'i') {
+      const player: PlayerProps = {
+        id: uuid(),
+        name: '',
+      }
+
+      setPlayers([...players, player]);
+    }
+  }, [players]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleUserKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleUserKeyPress);
+    };
+  }, [handleUserKeyPress]);
 
   if (!isAuthenticated) {
     return <Redirect to="/" />
   }
-
-  const ownerName = cookies.get("auth_token");
 
   return (
     <Container>
@@ -26,9 +58,11 @@ export function Room() {
       </header>
 
       <Players>
-        <li>
-          <img src={avatarImg} alt="Avatar"/>
-        </li>
+        {players.map(player => (
+          <li key={player.id}>
+            <img src={avatarImg} alt={player.name}/>
+          </li>
+        ))}
       </Players>
 
       <footer>
