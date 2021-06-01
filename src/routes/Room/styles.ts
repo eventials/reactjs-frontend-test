@@ -58,17 +58,51 @@ export const Players = styled.ul`
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  align-content: space-between;
 
   li {
     list-style: none;
     
-    height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 25%;
+
+    border: 1px solid var(--red);
+    height: 100%;
+
+    &:first-child:nth-last-child(1) {
+      max-width: 100%;
+    }
+
+    &:first-child:nth-last-child(2),
+    &:first-child:nth-last-child(2) ~ li {
+      max-width: 49.5%;
+    }
+
+    &:first-child:nth-last-child(3),
+    &:first-child:nth-last-child(3) ~ li {
+      max-width: 33%;
+    }
+
+    &:first-child:nth-last-child(4),
+    &:first-child:nth-last-child(4) ~ li {
+      max-width: 49.5%;
+      height: 49%;
+    }
+
+    &:first-child:nth-last-child(n + 5),
+    &:first-child:nth-last-child(n + 5) ~ li {
+      max-width: 24.5%;
+      height: 49%;
+    }
+
+    &:first-child:nth-last-child(n + 9),
+    &:first-child:nth-last-child(n + 9) ~ li {
+      max-width: 24.5%;
+      height: 32.5%;
+    }
 
     img {
       max-height: 90%;
