@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import Modal from "react-modal";
+import { PlayersContext } from '../../PlayersContext';
 import { Container } from "./styles";
 
 interface NewPlayerModalProps {
@@ -10,21 +12,30 @@ export function NewPlayerModal({
   isOpen, 
   handleCloseNewPlayerModal, 
 }: NewPlayerModalProps) {
+
+  const { addPlayer } = useContext(PlayersContext)
+
+  function handleAddPlayer() {
+    addPlayer();
+    handleCloseNewPlayerModal();
+  }
     
   return (
     <Modal
       isOpen={isOpen}
+      overlayClassName="react-modal-overlay"
+      className="react-modal-content"
     >
       <Container>
-        <p>Um novo player gostaria de entrar</p>
+        <p>Um novo participante gostaria de entrar.</p>
         <div>
-          <button>
+          <button onClick={handleAddPlayer}>
             Permitir
           </button>
           <button
             onClick={handleCloseNewPlayerModal}
           >
-            Não quero que acesse
+            Não
           </button>
         </div>
       </Container>

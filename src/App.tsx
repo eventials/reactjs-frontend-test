@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { NewPlayerModal } from './components/NewPlayerModal';
+import { PlayersProvider } from './PlayersContext';
 import { Login } from './routes/Login/index';
 import { Room } from './routes/Room/index';
 import { GlobalStyle } from './styles/global';
@@ -21,7 +22,7 @@ export function App() {
   }
   
   return (
-    <>
+    <PlayersProvider>
       <BrowserRouter>
         <Route path="/" exact component={Login} />
         <Route 
@@ -38,6 +39,6 @@ export function App() {
       />
       
       <GlobalStyle />
-    </>
+    </PlayersProvider>
   );
 }

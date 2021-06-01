@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import { v4 as uuid } from 'uuid';
 
-import { Container, Players } from './styles';
+import { PlayersContext } from '../../PlayersContext';
 
 import { FaPowerOff } from 'react-icons/fa';
-
+import { Container, Players } from './styles';
 import avatarImg from '../../assets/avatar.jpg';
 
 const cookies = new Cookies();
-
-interface PlayerProps {
-  id: string;
-  name: string; 
-}
 
 interface RoomProps {
   onOpenNewPlayerModal: () => void;
@@ -25,18 +19,7 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
   const isAuthenticated = cookies.get("auth_token") !== undefined;
   const ownerName = cookies.get("auth_token");
 
-  const [players, setPlayers] = useState<PlayerProps[]>(() => {
-    const storagedRepositories = localStorage.getItem('@EventialsMeeting:players');
-
-    if(storagedRepositories) {
-      return JSON.parse(storagedRepositories);
-    } else {
-      return [{
-        id: uuid(),
-        name: ownerName,
-      }]
-    }
-  });
+  const { players, cleanSession } = useContext(PlayersContext)
 
   const [redirect, setRedirect] = useState(false);
 
@@ -47,12 +30,6 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
 
       onOpenNewPlayerModal();
 
-      const player: PlayerProps = {
-        id: uuid(),
-        name: '',
-      }
-
-      setPlayers([...players, player]);
     }
   }, [players]);
 
@@ -72,8 +49,7 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
   }, [players])
 
   function handleEndMeeting() {
-    cookies.remove("auth_token");
-    localStorage.removeItem('@EventialsMeeting:players');
+    cleanSession();
     setRedirect(true);
   }
 
