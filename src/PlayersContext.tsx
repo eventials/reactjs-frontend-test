@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import Cookies from 'universal-cookie';
 
@@ -36,6 +36,13 @@ export function PlayersProvider({ children }: PlayersProviderProps) {
       }]
     }
   });
+
+  useEffect(() => {
+    localStorage.setItem(
+      '@EventialsMeeting:players', 
+      JSON.stringify(players),
+    );
+  }, [players])
 
   function addPlayer() {
     const player = {

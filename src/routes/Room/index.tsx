@@ -41,13 +41,6 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
     };
   }, [handleUserKeyPress]);
 
-  useEffect(() => {
-    localStorage.setItem(
-      '@EventialsMeeting:players', 
-      JSON.stringify(players),
-    );
-  }, [players])
-
   function handleEndMeeting() {
     cleanSession();
     setRedirect(true);
