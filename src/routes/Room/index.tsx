@@ -16,10 +16,7 @@ interface RoomProps {
 
 export function Room({ onOpenNewPlayerModal }: RoomProps) {
 
-  const isAuthenticated = cookies.get("auth_token") !== undefined;
-  const ownerName = cookies.get("auth_token");
-
-  const { players, cleanSession } = useContext(PlayersContext)
+  const { players, cleanSession, handleRemovePlayer } = useContext(PlayersContext)
 
   const [redirect, setRedirect] = useState(false);
 
@@ -41,6 +38,10 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
     };
   }, [handleUserKeyPress]);
 
+  const isAuthenticated = cookies.get("auth_token") !== undefined;
+
+  const ownerName = cookies.get("auth_token");
+
   function handleEndMeeting() {
     cleanSession();
     setRedirect(true);
@@ -60,6 +61,12 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
         {players.map(player => (
           <li key={player.id}>
             <img src={avatarImg} alt={player.name}/>
+            <button 
+              onClick={() => handleRemovePlayer(player.id)}
+              hidden={player.name === 'Administrador'}
+            >
+              <FaPowerOff size={20} />
+            </button>
           </li>
         ))}
       </Players>

@@ -17,6 +17,7 @@ interface PlayersContextData {
   players: Player[];
   addPlayer: () => void;
   cleanSession: () => void;
+  handleRemovePlayer: (id: string) => void;
 }
 
 export const PlayersContext = createContext<PlayersContextData>(
@@ -61,8 +62,13 @@ export function PlayersProvider({ children }: PlayersProviderProps) {
     }]);
   }
 
+  function handleRemovePlayer(id: string){
+    const newPlayers = players.filter(player => player.id !== id);
+    setPlayers(newPlayers);
+  }
+
   return (
-    <PlayersContext.Provider value={{ players, addPlayer, cleanSession }}>
+    <PlayersContext.Provider value={{ players, addPlayer, cleanSession, handleRemovePlayer }}>
       {children}
     </PlayersContext.Provider>
   );

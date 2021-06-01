@@ -72,6 +72,8 @@ export const Players = styled.ul`
     border: 1px solid var(--red);
     height: 100%;
 
+    position: relative;
+
     &:first-child:nth-last-child(1) {
       max-width: 100%;
     }
@@ -107,6 +109,28 @@ export const Players = styled.ul`
     img {
       max-height: 90%;
       width: 90%;
+    }
+
+    &:hover button {
+      opacity: 1;
+    }
+
+    button {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      background-color: var(--red);
+      color: #fff;
+
+      transition: background-color opacity 0.4s;
+
+      opacity: 0;
+
+      &:hover {
+        background-color: var(--purple);
+      }
     }
   }
 `
