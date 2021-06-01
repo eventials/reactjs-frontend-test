@@ -1,12 +1,12 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import ReactPlayer from 'react-player';
 
 import { PlayersContext } from '../../PlayersContext';
 
 import { FaPowerOff } from 'react-icons/fa';
 import { Container, Players } from './styles';
-import avatarImg from '../../assets/avatar.jpg';
 
 const cookies = new Cookies();
 
@@ -60,7 +60,11 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
       <Players>
         {players.map(player => (
           <li key={player.id}>
-            <img src={avatarImg} alt={player.name}/>
+            <ReactPlayer 
+              url='https://www.youtube.com/watch?v=rG4jSz_2HDY'
+              width="100%"
+              height="100%"
+            />
             <button 
               onClick={() => handleRemovePlayer(player.id)}
               hidden={player.name === 'Administrador'}
