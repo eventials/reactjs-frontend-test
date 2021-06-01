@@ -29,13 +29,15 @@ export function NewPlayerModal({
       <Container>
         <p>Um novo participante gostaria de entrar.</p>
         <div>
-          <button onClick={handleAddPlayer}>
+          <button 
+            onClick={handleAddPlayer}
+          >
             Permitir
           </button>
           <button
             onClick={handleCloseNewPlayerModal}
           >
-            Não
+            Não Permitir
           </button>
         </div>
       </Container>

@@ -13,7 +13,7 @@ export const Container = styled.div`
 
     button {
       border: initial;
-      width: 80px;
+      width: 100px;
       height: 30px;
       background-color: var(--purple);
       color: #fff;
