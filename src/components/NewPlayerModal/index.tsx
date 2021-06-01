@@ -13,7 +13,9 @@ export function NewPlayerModal({
   handleCloseNewPlayerModal, 
 }: NewPlayerModalProps) {
 
-  const { addPlayer } = useContext(PlayersContext)
+  const { addPlayer, players } = useContext(PlayersContext);
+
+  const playersLimitRoom = players.length < 12;
 
   function handleAddPlayer() {
     addPlayer();
@@ -27,18 +29,24 @@ export function NewPlayerModal({
       className="react-modal-content"
     >
       <Container>
-        <p>Um novo participante gostaria de entrar.</p>
+        <p>
+          {playersLimitRoom 
+            ? 'Um novo participante gostaria de entrar.' 
+            : 'A sala esta cheia.' 
+          }
+        </p>
         <div>
-          <button 
-            onClick={handleAddPlayer}
-          >
-            Permitir
-          </button>
-          <button
-            onClick={handleCloseNewPlayerModal}
-          >
-            Não Permitir
-          </button>
+            <button 
+              onClick={handleAddPlayer}
+              hidden={!playersLimitRoom}
+            >
+              Permitir
+            </button>
+            <button
+              onClick={handleCloseNewPlayerModal}
+            >
+              {playersLimitRoom ? 'Não Permitir' : 'Ok' }
+            </button>
         </div>
       </Container>
     </Modal>
