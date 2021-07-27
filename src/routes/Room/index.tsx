@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player';
 import { PlayersContext } from '../../PlayersContext';
 
 import { FaPowerOff } from 'react-icons/fa';
-import { Container, LayoutLayer, Players } from './styles';
+import { Container, LayoutsLayer, Players } from './styles';
 
 import ImgLayout1 from '../../assets/layout1.svg';
 import ImgLayout2 from '../../assets/layout2.svg';
@@ -27,6 +27,7 @@ interface LayoutProps {
   id: number;
   image: string;
   active: boolean;
+  className: string;
 }
 
 export function Room({ onOpenNewPlayerModal }: RoomProps) {
@@ -36,6 +37,7 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
   const [redirect, setRedirect] = useState(false);
 
   const [layouts, setLayouts] = useState<LayoutProps[]>([])
+  const [activeLayout, setActiveLayout] = useState('layout-1')
 
   useEffect(() => {
     setLayouts([
@@ -43,41 +45,49 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
         id: 1,
         image: ImgLayout1,
         active: true,
+        className: 'layout-1',
       },
       {
         id: 2,
         image: ImgLayout2,
         active: false,
+        className: 'layout-2',
       },
       {
         id: 3,
         image: ImgLayout3,
         active: false,
+        className: 'layout-3',
       },
       {
         id: 4,
         image: ImgLayout4,
         active: false,
+        className: 'layout-4',
       },
       {
         id: 5,
         image: ImgLayout5,
         active: false,
+        className: 'layout-5',
       },
       {
         id: 6,
         image: ImgLayout6,
         active: false,
+        className: 'layout-6',
       },
       {
         id: 7,
         image: ImgLayout7,
         active: false,
+        className: 'layout-7',
       },
       {
         id: 8,
         image: ImgLayout8,
         active: false,
+        className: 'layout-8',
       },
     ])
   }, [])
@@ -113,11 +123,14 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
     const newLayouts = [...layouts]
 
     const selectedLayout = newLayouts.findIndex(layout => layout.id === id)
-
+    
     newLayouts.map(layout => layout.active = false)
     newLayouts[selectedLayout].active = true
+    
+    const newActiveLayout = newLayouts[selectedLayout].className
 
     setLayouts(newLayouts)
+    setActiveLayout(newActiveLayout)
   }
 
   if (!isAuthenticated || redirect) {
@@ -130,7 +143,10 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
         <h2>Chamada de {ownerName}</h2>
       </header>
 
-      <Players>
+      <Players 
+        className={activeLayout}
+        quantity={players.length}
+      >
         {players.map(player => (
           <li key={player.id}>
             <ReactPlayer 
@@ -148,7 +164,7 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
         ))}
       </Players>
 
-      <LayoutLayer>
+      <LayoutsLayer>
         {layouts.map(layout => (
           <li key={layout.id}>
             <button
@@ -159,7 +175,7 @@ export function Room({ onOpenNewPlayerModal }: RoomProps) {
             </button>
           </li>
         ))}
-      </LayoutLayer>
+      </LayoutsLayer>
 
       <footer>
         <button onClick={handleEndMeeting}>

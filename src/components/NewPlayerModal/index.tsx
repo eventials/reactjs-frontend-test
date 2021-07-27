@@ -15,7 +15,7 @@ export function NewPlayerModal({
 
   const { addPlayer, players } = useContext(PlayersContext);
 
-  const playersLimitRoom = players.length < 12;
+  const playersLimitRoom = players.length < 5;
 
   function handleAddPlayer() {
     addPlayer();

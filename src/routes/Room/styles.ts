@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface PlayersProps {
+  quantity: number;
+}
+
 export const Container = styled.div`
   header {
     height: 40px;
@@ -23,15 +27,15 @@ export const Container = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    
+
     height: 70px;
-    
+
     button {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: auto;
-      
+
       width: 100px;
       height: 100%;
 
@@ -52,59 +56,57 @@ export const Container = styled.div`
   }
 `
 
-export const Players = styled.ul`
+export const Players = styled.ul<PlayersProps>`
   height: calc(100vh - 175px);
-  padding: 1rem;
 
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  align-content: space-between;
+
+  &.layout-1 {
+    display: grid;
+
+    grid-template-columns: ${props => props.quantity === 1 && '100%'};
+    grid-template-columns: ${props => props.quantity === 2 && '50% 50%'};
+    grid-template-columns: ${props => props.quantity === 3 && '50% 50%'};
+    grid-template-columns: ${props => props.quantity === 4 && '50% 50%'};
+    grid-template-columns: ${props => props.quantity === 5 && '50% 25% 25%'};
+
+    li {
+      &:nth-of-type(1) {
+        grid-column: ${props => props.quantity === 1 && '1'};
+
+        grid-column: ${props => props.quantity === 2 && '1'};
+
+        grid-column: ${props => props.quantity === 3 && '1'};
+        grid-row: ${props => props.quantity === 3 && '1 / span 2'};
+
+        grid-column: ${props => props.quantity === 5 && '1'};
+        grid-row: ${props => props.quantity === 5 && '1 / span 2'};
+      }
+      &:nth-of-type(2) {
+        grid-column: ${props => props.quantity === 2 && '2'};
+
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '1'};
+      }
+      &:nth-of-type(3) {
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '2'};
+      }
+      &:nth-of-type(4) {
+      }
+    }
+  }
 
   li {
     list-style: none;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border: 1px solid var(--red);
     height: 100%;
 
     position: relative;
-
-    &:first-child:nth-last-child(1) {
-      width: 100%;
-    }
-
-    &:first-child:nth-last-child(2),
-    &:first-child:nth-last-child(2) ~ li {
-      width: 49.5%;
-    }
-
-    &:first-child:nth-last-child(3),
-    &:first-child:nth-last-child(3) ~ li {
-      width: 33%;
-    }
-
-    &:first-child:nth-last-child(4),
-    &:first-child:nth-last-child(4) ~ li {
-      width: 49.5%;
-      height: 49%;
-    }
-
-    &:first-child:nth-last-child(n + 5),
-    &:first-child:nth-last-child(n + 5) ~ li {
-      width: 24.5%;
-      height: 49%;
-    }
-
-    &:first-child:nth-last-child(n + 9),
-    &:first-child:nth-last-child(n + 9) ~ li {
-      width: 24.5%;
-      height: 32.5%;
-    }
 
     &:hover button {
       opacity: 1;
@@ -130,7 +132,7 @@ export const Players = styled.ul`
   }
 `
 
-export const LayoutLayer = styled.ul`
+export const LayoutsLayer = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
