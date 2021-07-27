@@ -53,7 +53,7 @@ export const Container = styled.div`
 `
 
 export const Players = styled.ul`
-  height: calc(100vh - 110px);
+  height: calc(100vh - 175px);
   padding: 1rem;
 
   display: flex;
@@ -126,6 +126,27 @@ export const Players = styled.ul`
       &:hover {
         background-color: var(--purple);
       }
+    }
+  }
+`
+
+export const LayoutLayer = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  list-style: none;
+  gap: 15px;
+  padding: 10px 0;
+
+  border-top: 2px solid var(--red);
+  background-color: #fff;
+
+  button {
+    border: 2px solid transparent;
+
+    &.active {
+      border: 2px solid #000
     }
   }
 `
