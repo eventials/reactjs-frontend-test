@@ -129,6 +129,75 @@ export const Players = styled.ul<PlayersProps>`
     }
   }
 
+  &.layout-3 {
+    display: grid;
+
+    grid-template-columns: ${props => props.quantity === 1 && '100%'};
+    grid-template-columns: ${props => props.quantity === 2 && '50% 50%'};
+    grid-template-columns: ${props => props.quantity === 3 && '50% 50%'};
+    grid-template-columns: ${props => props.quantity === 4 && '50% 50%'};
+    grid-template-columns: ${props => props.quantity === 5 && '50% 25% 25%'};
+
+    li {
+
+      padding: ${props => props.quantity === 1 && '2% 1%'};
+      padding: ${props => props.quantity === 2 && '10% 2%'};
+      padding: ${props => props.quantity === 3 && '6% 1.5%'};
+      padding: ${props => props.quantity === 4 && '6% 1.5%'};
+      padding: ${props => props.quantity === 5 && '8% 2%'};
+
+      &:nth-of-type(1) {
+        grid-column: ${props => props.quantity === 1 && '1'};
+
+        grid-column: ${props => props.quantity === 2 && '1'};
+
+        grid-column: ${props => props.quantity === 3 && '1'};
+        grid-row: ${props => props.quantity === 3 && '1 / span 2'};
+
+        grid-column: ${props => props.quantity === 5 && '1'};
+        grid-row: ${props => props.quantity === 5 && '1 / span 2'};
+
+        padding-bottom: ${props => props.quantity === 4 && '1.5%'};
+      }
+      &:nth-of-type(2) {
+        grid-column: ${props => props.quantity === 2 && '2'};
+
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '1'};
+
+        padding-bottom: ${props => props.quantity === 3 && '1.5%'};
+
+        padding-bottom: ${props => props.quantity === 4 && '1.5%'};
+
+        padding-top: ${props => props.quantity === 5 && '16%'};
+        padding-bottom: ${props => props.quantity === 5 && '4%'};
+      }
+      &:nth-of-type(3) {
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '2'};
+
+        padding-top: ${props => props.quantity === 3 && '1.5%'};
+
+        padding-top: ${props => props.quantity === 4 && '1.5%'};
+
+        padding-top: ${props => props.quantity === 5 && '16%'};
+        padding-bottom: ${props => props.quantity === 5 && '4%'};
+      }
+      &:nth-of-type(4) {
+        padding-top: ${props => props.quantity === 4 && '1.5%'};
+
+        padding-top: ${props => props.quantity === 5 && '4%'};
+        padding-bottom: ${props => props.quantity === 5 && '16%'};
+      }
+      &:nth-of-type(5) {
+        padding-top: ${props => props.quantity === 4 && '1.5%'};
+
+        padding-top: ${props => props.quantity === 5 && '4%'};
+        padding-bottom: ${props => props.quantity === 5 && '16%'};
+      }
+    }
+  }
+
   li {
     list-style: none;
 
