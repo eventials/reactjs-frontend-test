@@ -190,10 +190,103 @@ export const Players = styled.ul<PlayersProps>`
         padding-bottom: ${props => props.quantity === 5 && '16%'};
       }
       &:nth-of-type(5) {
-        padding-top: ${props => props.quantity === 4 && '1.5%'};
-
         padding-top: ${props => props.quantity === 5 && '4%'};
         padding-bottom: ${props => props.quantity === 5 && '16%'};
+      }
+    }
+  }
+
+  &.layout-4 {
+    display: grid;
+
+    grid-template-columns: ${props => props.quantity === 1 && '100%'};
+    grid-template-columns: ${props => props.quantity >= 2 && '75% 25%'};
+
+    li {
+
+      padding: ${props => props.quantity === 1 && '2% 1%'};
+      padding: ${props => props.quantity >= 2 && '5% 2%'};
+
+      &:nth-of-type(1) {
+        grid-column: ${props => props.quantity === 1 && '1'};
+
+        grid-row: ${props => props.quantity === 2 && '1 / span 2'};
+
+        grid-column: ${props => props.quantity === 3 && '1'};
+        grid-row: ${props => props.quantity === 3 && '1 / span 2'};
+
+        grid-column: ${props => props.quantity === 4 && '1'};
+        grid-row: ${props => props.quantity === 4 && '1 / span 3'};
+
+        grid-column: ${props => props.quantity === 5 && '1'};
+        grid-row: ${props => props.quantity === 5 && '1 / span 4'};
+      }
+      &:nth-of-type(2) {
+        grid-column: ${props => props.quantity === 2 && '2'};
+
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '1'};
+
+        padding-top: ${props => props.quantity === 2 && '15%'};
+
+        padding-top: ${props => props.quantity === 3 && '15%'};
+        padding-bottom: ${props => props.quantity === 3 && '1.5%'};
+
+        padding-top: ${props => props.quantity === 4 && '15%'};
+        padding-bottom: ${props => props.quantity === 4 && '1%'};
+
+        padding-top: ${props => props.quantity === 5 && '15%'};
+        padding-bottom: ${props => props.quantity === 5 && '1%'};
+      }
+      &:nth-of-type(3) {
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '2'};
+
+        padding-bottom: ${props => props.quantity === 3 && '15%'};
+
+        padding-bottom: ${props => props.quantity === 4 && '0.5%'};
+        padding-top: ${props => props.quantity === 4 && '0.5%'};
+
+        padding-bottom: ${props => props.quantity === 5 && '0.5%'};
+        padding-top: ${props => props.quantity === 5 && '0.5%'};
+      }
+      &:nth-of-type(4) {
+        padding-bottom: ${props => props.quantity === 4 && '15%'};
+        padding-top: ${props => props.quantity === 4 && '1%'};
+        
+        padding-bottom: ${props => props.quantity === 5 && '0.5%'};
+        padding-top: ${props => props.quantity === 5 && '0.5%'};
+      }
+      &:nth-of-type(5) {
+        padding-bottom: ${props => props.quantity === 5 && '15%'};
+        padding-top: ${props => props.quantity === 5 && '1%'};
+      }
+    }
+  }
+
+  &.layout-5 {
+    display: grid;
+
+    grid-template-columns: ${props => props.quantity === 1 && '60%'};
+    grid-template-columns: ${props => props.quantity === 2 && '60% 35%'};
+
+    li {
+
+      &:nth-of-type(1) {
+        grid-column: ${props => props.quantity === 1 && '1'};
+
+        grid-row: ${props => props.quantity === 2 && '1 / span 5'};
+
+        grid-row: ${props => props.quantity === 3 && '1 / span 10'};
+      }
+      &:nth-of-type(2) {
+        grid-column: ${props => props.quantity === 2 && '2'};
+        grid-row: ${props => props.quantity === 2 && '2 / span 3'};
+
+        grid-column: ${props => props.quantity === 3 && '2'};
+        grid-row: ${props => props.quantity === 3 && '2 / span 4'};
+
+        margin-left: ${props => props.quantity >= 2 && '-15%'};
       }
     }
   }
