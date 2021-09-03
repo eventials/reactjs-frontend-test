@@ -11,7 +11,6 @@ export const WebnarContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     border: 1px solid red;
-    font-family: 'Open Sans', sans-serif;
 
     .leftContainer {
         display: flex;
