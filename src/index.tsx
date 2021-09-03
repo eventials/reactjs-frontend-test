@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './pages/login/App';
+import App from './pages/login';
 import Webnar from './pages/webnar';
 import reportWebVitals from './reportWebVitals';
+import Routes from './routes/index';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Webnar />
+    <Routes />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import { Container } from './styles';
 import {  createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function App() {
+const Login = () => {
 
   return (
-    <div>
+    <Container>
       <h1>Login</h1>
       <p>Adicione suas credenciais para acessar sua conta</p>
       <div className="inputLogin">
@@ -28,8 +28,8 @@ function App() {
       <Button variant="contained" color="primary">
         Entrar
       </Button>
-    </div>
+    </Container>
   );
 }
 
-export default App;
+export default Login;
