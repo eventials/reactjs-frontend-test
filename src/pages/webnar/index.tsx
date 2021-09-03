@@ -21,47 +21,47 @@ return (
 <WebnarContainer>
     <div className="leftContainer">
         <div className="headerContainer">
-            <MdAirplay color="green"/>
+            <MdAirplay size={30} color="#FF0049" className="logoContainer"/>
             <div className="titleContainer">
                 <div>
                     <p>UX/UI Design Conference Meeting</p>
                     <p>Productivity</p>
                 </div>
                 <div className="headerIconsContainer">
-                    <FiShare color="green"/>
-                    <AiOutlineControl color="green"/>
+                    <FiShare size={20} color="#FFBD2D"/>
+                    <AiOutlineControl size={20} color="#6200FF"/>
                 </div>
             </div>
         </div>
         <div className="chatContainer">
             <div className="ownerVideo">
-                <div>
-                    <div className="participantsVideoContainer"></div>
-                    <div className="participantsVideoContainer"></div>
-                    <div className="participantsVideoContainer"></div>
-                    <div className="participantsVideoContainer"></div>
+                <div className="participantsVideoContainer">
+                    <div className="participants"></div>
+                    <div className="participants"></div>
+                    <div className="participants"></div>
+                    <div className="participants"></div>
                 </div>
             </div>
         </div>
         <div className="menuContainer">
-            <IoVideocamOutline size={20} color="green"/>
-            <BsMic size={20} color="green"/>
-            <CgScreen size={20} color="green"/>
-            <BsChat size={20} color="green"/>
-            <IoExitOutline size={20} color="green"/>
-        </div>
-    </div>
+            <IoVideocamOutline size={35} color="#6200FF" className="menuIcon"/>
+            <BsMic size={30} color="#FFBD2D" className="menuIcon"/>
+            <CgScreen size={35} color="#FF0049" className="menuIcon"/>
+            <BsChat size={30} color="#FF90BB" className="menuIcon"/>
+            <IoExitOutline size={35} color="#8C00FF" className="menuIcon"/>
+        </div>    
+    </div> 
     <div className="rigthContainer">
-        <div>
+        <div className="headerChat">
             <p> Chat with Anna</p>
-            <IoCloseCircleOutline />
+            <IoCloseCircleOutline size={20} color="#FF0049"/>
         </div>
-        <div>
-        <GrAttachment />
-        <TextField id="outlined-basic" label="Email" variant="outlined" size="small" />
-        <Button variant="contained" color="primary">
-            <MdSend />
-      </Button>
+        <div className="messageChat">
+            <GrAttachment size={20} className="attachIcon"/>
+            <TextField id="outlined-basic" label="Escreva sua mensagem" variant="outlined" size="small" />
+            <Button variant="contained" color="primary">
+                <MdSend />
+            </Button>
         </div>
     </div>
 </WebnarContainer>
