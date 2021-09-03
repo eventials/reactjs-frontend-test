@@ -13,6 +13,7 @@ export const WebnarContainer = styled.div`
     border: 1px solid red;
     font-family: 'Open Sans', sans-serif;
 
+
     .leftContainer {
         display: flex;
         flex-direction: column;
@@ -47,35 +48,55 @@ export const WebnarContainer = styled.div`
         border: 1px solid yellow;
     }
 
-    .chatContainer {
-        display: flex;
-        width: 100%;
-        height: 80%;
-        border: 1px solid green;
-    }
-
-    .ownerVideo {
-        display: flex;
-        justify-content: flex-end;
+    .wrap {
         width: 100%;
         height: 100%;
-        background-color: gray;
-        border-radius: 20px;
+        display: flex;
+        position: relative;
+        justify-content: flex-end;
+    }
+
+    .wrap > .bg-video {
+        background-color: blue;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; 
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .wrap > .bg-video > video {
+        width: 100%;
+    }
+
+    .chatContainer {
+        background-color: red;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .participantsVideoContainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
+        margin-top: 10px;
+        margin-right: 10px;
+        height: 500px;
+        width: 120px;
+        overflow-y: auto;
+    }
+
+    .participantsVideoContainer::-webkit-scrollbar {
+        display: none;
     }
 
     .participants {
-        width: 150px;
-        height: 20%;
-        margin: 10px 15px 10px 0;
+        width: 120px;
+        height: 120px;
         background-color: white;
-        border-radius: 20px;
+        margin-bottom: 10px;
+        border-radius: 10px;
     }
 
     .menuContainer {
