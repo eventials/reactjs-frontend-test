@@ -10,8 +10,6 @@ export const WebnarContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid red;
-
 
     .leftContainer {
         display: flex;
@@ -20,17 +18,16 @@ export const WebnarContainer = styled.div`
         justify-content: space-between;
         width: 75%;
         height: 95%;
-        border: 1px solid black;
     }
 
     .headerContainer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 5%;
+        height: 7%;
         width: 100%;
-        border: 1px solid blue;
         background-color: #EFF2F8;
+        border-radius: 20px;
     }
 
     .logoContainer {
@@ -44,16 +41,25 @@ export const WebnarContainer = styled.div`
         height: 100%;
         width: 80%;
         margin-left: 30px;
-        border: 1px solid yellow;
+    }
+
+    .title {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .headerIconsContainer {
+        margin-right: 20px;
     }
 
     .wrap {
         width: 100%;
-        height: 100%;
+        height: 77%;
         display: flex;
         position: relative;
         justify-content: flex-end;
-    }
+        border-radius: 20px;
+    }   
 
     .wrap > .bg-video {
         background-color: blue;
@@ -64,10 +70,12 @@ export const WebnarContainer = styled.div`
         width: 100%;
         height: 100%;
         overflow: hidden;
+        border-radius: 20px;
     }
     
     .wrap > .bg-video > video {
         width: 100%;
+        border-radius: 20px;
     }
 
     .chatContainer {
@@ -79,10 +87,10 @@ export const WebnarContainer = styled.div`
     }
 
     .participantsVideoContainer {
-        margin-top: 10px;
+        margin-top: 15px;
         margin-right: 10px;
-        height: 500px;
-        width: 120px;
+        height: 93%;
+        width: 140px;
         overflow-y: auto;
     }
 
@@ -90,28 +98,70 @@ export const WebnarContainer = styled.div`
         display: none;
     }
 
-    .participants {
+    .participantsBox {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
+
+    .participantsData {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .participantImage {
+        position: relative;
         width: 120px;
         height: 120px;
-        background-color: white;
-        margin-bottom: 10px;
-        border-radius: 10px;
+        z-index: 5;
+        border-radius: 20px;
+        border: 4px solid white;
+        object-fit: cover;
+
+    }
+
+    .participanteName {
+        position: absolute;
+        margin-bottom: 7px;
+        bottom: 0;
+        z-index: 10;
+        color: white;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.20);
+        border-radius: 20px;
+        width: 100px;
+        text-align: center;
+        
     }
 
     .menuContainer {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50px;
+        border-radius: 20px;
         width: 100%;
-        height: 8%;
-        border-radius: 7px;
-        border: 1px solid black;
+        height: 12%;
         background-color: #EFF2F8
+    }
+
+    .menuItemContainer {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        margin-right: 15px;
+        margin-left: 15px;
+        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
     }
 
     .menuIcon {
         margin: 10px;
+        border-right: 80px;
     }
 
     .rigthContainer {
@@ -121,27 +171,85 @@ export const WebnarContainer = styled.div`
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid black;
-        background-color: #EFF2F8
+        background-color: #EFF2F8;
+        border-radius: 20px;
+    }
+
+    .chatContainerBody {
+        width: 100%;
+        height: 100%;
+    }
+
+    .messageContainer {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        height: 60px;
+        border-radius: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+
+    .messageImage {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin-right: 10px;
+    }
+
+    .messageContentContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+        width: 100%;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .messageParticipantName {
+        font-weight: bold;
+        font-size: 14px;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+
+    .message {
+        margin-left: 15px;
+        color: gray;
     }
 
     .headerChat {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 95%;
+        justify-content: start;
+        width: 100%;
+        margin-left: 35px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .messageChatContainer {
+        display: flex;
+        justify-content: center;
+        height: 60px;
+        width: 97%;
+        margin-bottom: 15px;
+        border: 1px solid pink;
     }
 
     .messageChat {
         display: flex;
-        justify-content: space-between;
+        justify-content: space12-around;
+        border-radius: 10px;
         align-items: center;
-        height: 8%;
+        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+        background-color: white;
         width: 95%;
-        border: 1px solid pink;
     }
 
-    .attachIcon {
-        align-self: center;
+    .sendMessageButton {
+        width: 30px;
     }
+
 `;
