@@ -43,7 +43,7 @@ export const TitleContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    width: 80%;
+    width: 100%;
     margin-left: 30px;
 `
 
@@ -52,6 +52,7 @@ export const Title = styled.div`
     flex-direction: column;
     font-weight: bolder;
     font-size: 22px;
+    
 `
 
 export const JoinParticipantContainer = styled.div`
@@ -121,7 +122,9 @@ export const BgVideo = styled.div`
 
 export const MainVideo = styled.video`
     width: 100%;
+    height: 100%;
     border-radius: 20px;
+    background-color: black;
 `
 
 export const ParticipantsVideoContainer = styled.div`

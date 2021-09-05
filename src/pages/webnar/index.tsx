@@ -202,7 +202,7 @@ const Webnar: React.FC = () => {
                 </HeaderContainer>
                 <Wrap>
                     <BgVideo>
-                        {isMainVideoOn && <MainVideo src="video.mp4" muted autoPlay loop />}
+                        <MainVideo src={isMainVideoOn ? "video.mp4": ""} muted autoPlay loop/>
                     </BgVideo>
 
                     <ParticipantsVideoContainer>
