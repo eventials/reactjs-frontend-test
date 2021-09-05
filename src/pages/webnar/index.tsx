@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
-import { MdAirplay } from 'react-icons/md';
 import { RiUserAddLine } from 'react-icons/ri';
-import { AiOutlineControl } from 'react-icons/ai';
 import { MdSend } from 'react-icons/md';
 import { HiOutlineUserRemove } from 'react-icons/hi';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { ParticipantAllowedMessageContainer, WebnarContainer } from "./styles";
+import {
+    WebnarContainer,
+    LeftContainer,
+    HeaderContainer,
+    Logo,
+    TitleContainer,
+    Title,
+    JoinParticipantContainer,
+    HeaderIconsContainer,
+    ParticipantAllowedMessageContainer,
+    Wrap,
+    BgVideo,
+    MainVideo,
+    ParticipantsVideoContainer,
+    ParticipantsBox,
+    ParticipantsData,
+    ParticipantImage,
+    ParticipanteName,
+    MenuContainer,
+    MenuItemContainer,
+} from "./styles";
 import { chatMessages, menuIconsList, participants } from './data';
 
 const Webnar: React.FC = () => {
@@ -89,65 +106,65 @@ const Webnar: React.FC = () => {
 
     return (
         <WebnarContainer>
-            <div className="leftContainer">
-                <div className="headerContainer">
-                    <img src="logo.png" alt="logo" className="logo"/>
-                    <div className="titleContainer">
-                        <div className="title">
+            <LeftContainer>
+                <HeaderContainer>
+                    <Logo src="logo.png" alt="logo" />
+                    <TitleContainer>
+                        <Title>
                             <span>UX/UI Design Conference Meeting</span>
-                        </div>
+                        </Title>
                             {participantWantsJoin &&
-                                 <div className="joinParticipantContainer">
+                                 <JoinParticipantContainer>
                                     <span>Participante deseja entrar na sala</span>
-                                    <div className="headerIconsContainer">
+                                    <HeaderIconsContainer>
                                         <RiUserAddLine
                                             size={30}
                                             color="#FFBD2D"
                                             title="Aceitar participante"
                                             onClick={() => handleAllowParticipantJoin(true)}
                                             />
-                                    </div> 
-                                    <div className="headerIconsContainer">
+                                    </HeaderIconsContainer> 
+                                    <HeaderIconsContainer>
                                         <HiOutlineUserRemove size={30}
                                             color="#FF0049"
                                             title="Recusar participante"
                                             onClick={() => handleAllowParticipantJoin(false)}
                                         />
                                         
-                                    </div>
-                                </div>
+                                    </HeaderIconsContainer>
+                                </JoinParticipantContainer>
                             }
                             {paticipantAllowedMessage !== "" &&
                                 <ParticipantAllowedMessageContainer color={participantWasAllowed ? "#FFBD2D" : "#FF0049"} className="participantAllowedMessageContainer">
                                     <span>{paticipantAllowedMessage}</span>
                                 </ParticipantAllowedMessageContainer>
                             }  
-                    </div>
-                </div>
-                <div className="wrap">
-                    <div className="bg-video">
-                        {isMainVideoOn && <video src="video.mp4" className="mainVideo" muted autoPlay loop />}
-                    </div>
+                    </TitleContainer>
+                </HeaderContainer>
+                <Wrap>
+                    <BgVideo>
+                        {isMainVideoOn && <MainVideo src="video.mp4" muted autoPlay loop />}
+                    </BgVideo>
 
-                    <div className="participantsVideoContainer">
+                    <ParticipantsVideoContainer>
                         {meetingParticipants.map((participant) => {
                             return (
-                                <div className="participantsBox" key={`${participant.name} - ${participant.id}`}>
-                                    <div className="participantsData">
-                                        <img className="participantImage" src={participant.image} alt={participant.name}/>
-                                        <p className="participanteName">{participant.name}</p>
-                                    </div>
-                                </div>
+                                <ParticipantsBox key={`${participant.name} - ${participant.id}`}>
+                                    <ParticipantsData>
+                                        <ParticipantImage src={participant.image} alt={participant.name}/>
+                                        <ParticipanteName>{participant.name}</ParticipanteName>
+                                    </ParticipantsData>
+                                </ParticipantsBox>
                             )
                         })}
-                    </div>
-                </div>
+                    </ParticipantsVideoContainer>
+                </Wrap>
 
-                <div className="menuContainer">
+                <MenuContainer>
                     { menuIconsList.map((menuIcon) => {
                         if(checkState(menuIcon.state)) {
                             return (
-                                <div className="menuItemContainer">
+                                <MenuItemContainer>
                                     < menuIcon.icon
                                         size={menuIcon.size}
                                         color={menuIcon.color}
@@ -155,11 +172,11 @@ const Webnar: React.FC = () => {
                                         onClick={() => handleClickMenuIcon(menuIcon.handleClick)}
                                         title={menuIcon.tooltip}
                                     />
-                                </div>
+                                </MenuItemContainer>
                             )
                         } else {
                             return (
-                                <div className="menuItemContainer">
+                                <MenuItemContainer>
                                     < menuIcon.iconOff
                                         size={menuIcon.size}
                                         color={menuIcon.color}
@@ -167,12 +184,12 @@ const Webnar: React.FC = () => {
                                         onClick={() => handleClickMenuIcon(menuIcon.handleClick)}
                                         title={menuIcon.tooltip}
                                     />
-                                </div>
+                                </MenuItemContainer>
                             )
                         }
                     })}
-                </div>    
-            </div> 
+                </MenuContainer>    
+            </LeftContainer> 
             <div className="rigthContainer">
                 <div className="headerChat">
                     <p>Chat</p>
