@@ -60,6 +60,18 @@ export const JoinParticipantContainer = styled.div`
     align-items: center;
 `
 
+export const JoinParticipandMessage = styled.span`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 290px;
+    height: 35px;
+    background-color: #6200FF;
+    color: white;
+    border-radius: 20px;
+    font-weight: bolder;
+`
+
 export const HeaderIconsContainer = styled.div`
     background-color: white;
     display: flex;
@@ -288,9 +300,12 @@ export const MessageChat = styled.div`
 `
 
 export const MessageButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 45px;
     height: 37px;
-    background-color: #4705EB;
+    background-color: #6200FF;
     border: none;
     border-radius: 7px;
     color: white;

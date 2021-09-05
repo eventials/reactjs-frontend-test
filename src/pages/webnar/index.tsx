@@ -11,6 +11,7 @@ import {
     TitleContainer,
     Title,
     JoinParticipantContainer,
+    JoinParticipandMessage,
     HeaderIconsContainer,
     ParticipantAllowedMessageContainer,
     Wrap,
@@ -143,7 +144,7 @@ const Webnar: React.FC = () => {
                         </Title>
                             {participantWantsJoin &&
                                  <JoinParticipantContainer>
-                                    <span>Participante deseja entrar na sala</span>
+                                    <JoinParticipandMessage>Participante deseja entrar na sala</JoinParticipandMessage>
                                     <HeaderIconsContainer>
                                         <RiUserAddLine
                                             size={30}
@@ -153,7 +154,8 @@ const Webnar: React.FC = () => {
                                             />
                                     </HeaderIconsContainer> 
                                     <HeaderIconsContainer>
-                                        <HiOutlineUserRemove size={30}
+                                        <HiOutlineUserRemove
+                                            size={30}
                                             color="#FF0049"
                                             title="Recusar participante"
                                             onClick={() => handleAllowParticipantJoin(false)}
@@ -164,7 +166,7 @@ const Webnar: React.FC = () => {
                             }
                             {paticipantAllowedMessage !== "" &&
                                 <ParticipantAllowedMessageContainer
-                                    className="participantAllowedMessageContainer"
+                                    // className="participantAllowedMessageContainer"
                                     color={participantWasAllowed ? "#FFBD2D" : "#FF0049"}
                                 >
                                     <span>{paticipantAllowedMessage}</span>
