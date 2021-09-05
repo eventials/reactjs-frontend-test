@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
-import Login from '../pages/login/index';
-import Webnar from '../pages/webnar/index';
+import Login from '../pages/Login/index';
+import Webinar from '../pages/Webinar/index';
 
 const Routes: React.FC = () => {
     return (
@@ -9,7 +9,7 @@ const Routes: React.FC = () => {
             <Switch>
                 <Route path="/" exact component={Login} />
                 <Route path="/login" component={Login} />
-                <Route path="/webnar" component={Webnar} />
+                <Route path="/webinar" component={Webinar} />
             </Switch>
         </Router>
     )
