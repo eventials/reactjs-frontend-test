@@ -16,11 +16,6 @@ import {
     MainVideo,
     ParticipantsVideoContainer,
     ParticipantsBox,
-    ParticipantsData,
-    ParticipantVideo,
-    ParticipanteName,
-    MenuContainer,
-    MenuItemContainer,
     RigthContainer,
     HeaderChat,
     ChatContainerBody,
@@ -39,6 +34,9 @@ import { FaRegWindowClose } from 'react-icons/fa';
 import { CgScreen } from 'react-icons/cg';
 import ParticipantAllowedMessageContainer from './components/ParticipantAllowedMessageContainer';
 import ParticipantButtonsContainer from './components/ParticipantButtonsContainer';
+import ParticipantsData from './components/ParticipantsData'
+import MenuContainer from './components/MenuContainer'
+
 
 interface IMeetingParticipant {
     id: number;
@@ -219,45 +217,17 @@ const Webinar: React.FC = () => {
                                             handleRemoveParticipant={handleRemoveParticipant}
                                         />
                                     }
-                                    <ParticipantsData>
-                                        <ParticipantVideo src={participant.isVideoOn ? participant.image : ""} muted autoPlay loop/>
-                                        <ParticipanteName>{participant.name}</ParticipanteName>
-                                    </ParticipantsData>
+                                    <ParticipantsData participant={participant} />
                                 </ParticipantsBox>
                             )
                         })}
                     </ParticipantsVideoContainer>
                 </Wrap>
-
-                <MenuContainer>
-                    { menuIconsList.map((menuIcon) => {
-                        if(checkState(menuIcon.state)) {
-                            return (
-                                <MenuItemContainer>
-                                    < menuIcon.icon
-                                        size={menuIcon.size}
-                                        color={menuIcon.color}
-                                        className="menuIcon"
-                                        onClick={() => handleClickMenuIcon(menuIcon.handleClick)}
-                                        title={menuIcon.tooltip}
-                                    />
-                                </MenuItemContainer>
-                            )
-                        } else {
-                            return (
-                                <MenuItemContainer>
-                                    < menuIcon.iconOff
-                                        size={menuIcon.size}
-                                        color={menuIcon.color}
-                                        className="menuIcon"
-                                        onClick={() => handleClickMenuIcon(menuIcon.handleClick)}
-                                        title={menuIcon.tooltip}
-                                    />
-                                </MenuItemContainer>
-                            )
-                        }
-                    })}
-                </MenuContainer>    
+                <MenuContainer
+                    menuIconsList={menuIconsList}
+                    checkState={checkState}
+                    handleClickMenuIcon={handleClickMenuIcon}
+                />
             </LeftContainer> 
             <RigthContainer>
                 <HeaderChat>
