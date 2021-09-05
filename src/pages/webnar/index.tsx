@@ -58,6 +58,13 @@ const Webnar: React.FC = () => {
         }
     }
 
+    const handleAllowParticipantJoin = () => {
+        if(participantWantsJoin) {
+            setParticipantWantsJoin(false)
+            setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "participant1.jpg"}])
+        }
+    }
+
     return (
         <WebnarContainer>
             <div className="leftContainer">
@@ -67,13 +74,16 @@ const Webnar: React.FC = () => {
                         <div className="title">
                             <span>UX/UI Design Conference Meeting</span>
                         </div>
-                        <div className="headerIconsContainer">
+                        <div className="joinParticipantContainer">
                             {participantWantsJoin && <span>Participante deseja entrar na sala</span>}
-                            <RiUserAddLine
-                                size={30}
-                                color="#FFBD2D"
-                                title="Adicionar participante"
-                            />
+                            <div className="headerIconsContainer">
+                                <RiUserAddLine
+                                    size={30}
+                                    color="#FFBD2D"
+                                    title="Adicionar participante"
+                                    onClick={handleAllowParticipantJoin}
+                                    />
+                            </div>
                         </div>
                     </div>
                 </div>

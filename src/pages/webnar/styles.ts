@@ -66,6 +66,12 @@ export const WebnarContainer = styled.div`
         box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
     }
 
+    .joinParticipantContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .wrap {
         width: 100%;
         height: 77%;
