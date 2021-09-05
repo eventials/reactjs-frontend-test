@@ -46,10 +46,21 @@ export const WebnarContainer = styled.div`
     .title {
         display: flex;
         flex-direction: column;
+        font-weight: bolder;
+        font-size: 22px;
     }
 
     .headerIconsContainer {
-        margin-right: 20px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin-right: 30px;
+        margin-left: 15px;
+        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
     }
 
     .wrap {
@@ -62,7 +73,7 @@ export const WebnarContainer = styled.div`
     }   
 
     .wrap > .bg-video {
-        background-color: blue;
+        background-color: #EFF2F8;
         position: absolute;
         top: 0;
         left: 0;

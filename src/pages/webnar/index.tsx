@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import { MdAirplay } from 'react-icons/md';
-import { FiShare } from 'react-icons/fi';
+import { RiUserAddLine } from 'react-icons/ri';
 import { AiOutlineControl } from 'react-icons/ai';
-import { IoVideocamOutline } from 'react-icons/io5';
-import { BsMic } from 'react-icons/bs';
-import { CgScreen } from 'react-icons/cg';
-import { BsChat } from 'react-icons/bs';
-import { IoExitOutline } from 'react-icons/io5';
-import { IoCloseCircleOutline } from 'react-icons/io5';
 import { MdSend } from 'react-icons/md';
-import { GrAttachment } from 'react-icons/gr';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { WebnarContainer } from "./styles";
@@ -18,9 +11,44 @@ import { chatMessages, menuIconsList, participants } from './data';
 const Webnar: React.FC = () => {
     const [messageContent, setMessageContent] = useState("")
     const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
+    const [isMainVideoOn, setIsMainVideoOn] = useState(false)
+    const [isMicrophoneOn, setIsMicrophoneOn] = useState(false)
+    const [isShareScreenOn, setIsShareScreenOn] = useState(true)
+    const [isVolumeOn, setIsVolumeOn] = useState(false)
+
 
     const addMessage = () => {
         setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 1"}])
+    }
+
+    const handleClickMenuIcon = (handleFunction: string) => {
+        switch (handleFunction) {
+            case "handleCamera":
+                setIsMainVideoOn(!isMainVideoOn);
+                break;
+            case "handleAudio":
+                setIsMicrophoneOn(!isMicrophoneOn);
+                break;
+            case "handleShareScreen":
+                setIsShareScreenOn(!isShareScreenOn);
+                break;
+            case "handleVolume":
+                setIsVolumeOn(!isVolumeOn);
+                break;
+        }
+    }
+
+    const checkState = (state: string) => {
+        switch (state) {
+            case "isVideoOn":
+                return isMainVideoOn
+            case "isMicrophoneOn":
+                return isMicrophoneOn
+            case "isShareScreenOn":
+                return isShareScreenOn
+            case "isVolumeOn":
+                return isVolumeOn
+        }
     }
 
     return (
@@ -31,17 +59,19 @@ const Webnar: React.FC = () => {
                     <div className="titleContainer">
                         <div className="title">
                             <span>UX/UI Design Conference Meeting</span>
-                            <span>Productivity</span>
                         </div>
                         <div className="headerIconsContainer">
-                            <FiShare size={30} color="#FFBD2D"/>
-                            <AiOutlineControl size={30} color="#6200FF"/>
+                            <RiUserAddLine
+                                size={30}
+                                color="#FFBD2D"
+                                title="Adicionar participante"
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="wrap">
                     <div className="bg-video">
-                        <video src="video.mp4" className="mainVideo" muted autoPlay loop />
+                        {isMainVideoOn && <video src="video.mp4" className="mainVideo" muted autoPlay loop />}
                     </div>
 
                     <div className="participantsVideoContainer">
@@ -60,15 +90,31 @@ const Webnar: React.FC = () => {
 
                 <div className="menuContainer">
                     { menuIconsList.map((menuIcon) => {
-                        return (
-                            <div className="menuItemContainer">
-                                < menuIcon.icon
-                                    size={menuIcon.size}
-                                    color={menuIcon.color}
-                                    className="menuIcon"
-                                />
-                            </div>
-                        )
+                        if(checkState(menuIcon.state)) {
+                            return (
+                                <div className="menuItemContainer">
+                                    < menuIcon.icon
+                                        size={menuIcon.size}
+                                        color={menuIcon.color}
+                                        className="menuIcon"
+                                        onClick={() => handleClickMenuIcon(menuIcon.handleClick)}
+                                        title={menuIcon.tooltip}
+                                    />
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div className="menuItemContainer">
+                                    < menuIcon.iconOff
+                                        size={menuIcon.size}
+                                        color={menuIcon.color}
+                                        className="menuIcon"
+                                        onClick={() => handleClickMenuIcon(menuIcon.handleClick)}
+                                        title={menuIcon.tooltip}
+                                    />
+                                </div>
+                            )
+                        }
                     })}
                 </div>    
             </div> 
