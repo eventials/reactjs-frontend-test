@@ -19,7 +19,7 @@ import {
     ParticipantsVideoContainer,
     ParticipantsBox,
     ParticipantsData,
-    ParticipantImage,
+    ParticipantVideo,
     ParticipanteName,
     MenuContainer,
     MenuItemContainer,
@@ -162,7 +162,7 @@ const Webnar: React.FC = () => {
                             return (
                                 <ParticipantsBox key={`${participant.name} - ${participant.id}`}>
                                     <ParticipantsData>
-                                        <ParticipantImage src={participant.image} alt={participant.name}/>
+                                        <ParticipantVideo src={participant.image} muted autoPlay loop/>
                                         <ParticipanteName>{participant.name}</ParticipanteName>
                                     </ParticipantsData>
                                 </ParticipantsBox>

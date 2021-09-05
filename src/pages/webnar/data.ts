@@ -5,11 +5,11 @@ import { IoExitOutline } from "react-icons/io5"
 import { FaRegWindowClose } from "react-icons/fa"
 
 export const participants = [
-    {id: 1, name: "Beto", image: "participant1.jpg"},
-    {id: 2, name: "Raul", image: "participant2.jpg"},
-    {id: 3, name: "Paula", image: "participant3.jpg"},
-    {id: 4, name: "Fernanda", image: "participant4.jpg"},
-    {id: 5, name: "Mariana", image: "participant5.jpg"},
+    {id: 1, name: "Beto", image: "video.mp4"},
+    {id: 2, name: "Raul", image: "video.mp4"},
+    {id: 3, name: "Paula", image: "video.mp4"},
+    {id: 4, name: "Fernanda", image: "video.mp4"},
+    {id: 5, name: "Mariana", image: "video.mp4"},
 ]
 
 export let chatMessages = [

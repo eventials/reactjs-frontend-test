@@ -1,31 +1,44 @@
 import React, { useContext, useState } from 'react';
 import { LoginContainer, Title } from './styles';
-import {  createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Context } from '../../Context/AuthContext';
+import jwt from 'jsonwebtoken'
+import Cookies from 'universal-cookie';
+ 
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
 
 const Login = () => {
   const {authenticated, handleLogin} = useContext(Context);
   const [email, setEmail] = useState('');
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false)
+  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false)
+
   const [password, setPassword] = useState('');
 
-  const handleClick = () => {
-    console.log("handle click")
+  const handleLoginClick = () => {
+    if (email === "") {
+      setIsEmailInvalid(true)
+    }
+
+    if (password === "") {
+      setIsPasswordInvalid(true)
+    }
+
+    if (password.length < 6) {
+      // window.alert("")
+    }
+
+    var token = jwt.sign({ email }, '0xfbtqn73b582b162v39n31819123626fs165152fs52b');
+    const cookies = new Cookies();
+    cookies.set('token', token, { path: '/' });
     handleLogin()
-    console.log(authenticated)
-    window.location.assign('/webnar');  
+    // window.location.assign('/webnar');  
+  }
+
+  const onChangeEmail = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setIsEmailInvalid(false)
+    setEmail(e.target.value)
   }
 
   return (
@@ -34,11 +47,28 @@ const Login = () => {
         <Title>Login</Title>
         <p className="text">Adicione suas credenciais para acessar sua conta</p>
         <div className="inputLogin">
-          <TextField id="outlined-basic" label="Email" variant="outlined" size="small" value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <TextField id="outlined-basic" label="Senha" variant="outlined" type="password" size="small" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <TextField
+            className="textInput"
+            error={isEmailInvalid}
+            label="Email"
+            variant="outlined"
+            size="small"
+            value={email}
+            onChange={(e) => onChangeEmail(e)}
+          />
+          <TextField
+            className="textInput"
+            error={isPasswordInvalid}
+            label="Senha"
+            variant="outlined"
+            type="password"
+            size="small"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
 
-        <Button onClick={handleClick} variant="contained" color="primary" className="enterBtn">
+        <Button onClick={handleLoginClick} variant="contained" color="primary" className="enterBtn">
           Entrar
         </Button>
       </div>

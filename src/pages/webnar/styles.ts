@@ -137,7 +137,7 @@ export const ParticipantsData = styled.div`
     justify-content: center;
 `
 
-export const ParticipantImage = styled.img`
+export const ParticipantVideo = styled.video`
     position: relative;
     width: 120px;
     height: 120px;

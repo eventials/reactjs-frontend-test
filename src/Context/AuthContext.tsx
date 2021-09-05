@@ -16,7 +16,6 @@ const AuthProvider: React.FC = ({ children }) => {
         console.log(authenticated)
         setAuthenticated(true)
         const cookies = new Cookies();
-        cookies.set('token', '12345678910', { path: '/' });
     }
 
 
