@@ -4,6 +4,7 @@ import {
   Container,
   Title,
   Text,
+  ErrorMessage,
   InputLogin,
 } from './styles';
 import Button from '@material-ui/core/Button';
@@ -47,6 +48,9 @@ const Login = () => {
       <Container>
         <Title>Login</Title>
         <Text>Adicione suas credenciais para acessar sua conta</Text>
+        {(isEmailInvalid || isPasswordInvalid) && 
+        <ErrorMessage>Preenchimento obrigatório</ErrorMessage>
+        }
         <InputLogin>
           <TextField
             className="textInput"

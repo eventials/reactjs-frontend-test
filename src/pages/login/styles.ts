@@ -42,6 +42,11 @@ export const Text = styled.p`
     margin-top: 0;
 `
 
+export const ErrorMessage = styled.span`
+    font-size: 14px;
+    color: #FF0049;
+`
+
 export const InputLogin = styled.div`
     display: flex;
     flex-direction: column;
