@@ -55,7 +55,7 @@ const Webnar: React.FC = () => {
         <WebnarContainer>
             <div className="leftContainer">
                 <div className="headerContainer">
-                    <MdAirplay size={30} color="#FF0049" className="logoContainer"/>
+                    <img src="logo.png" alt="logo" className="logo"/>
                     <div className="titleContainer">
                         <div className="title">
                             <span>UX/UI Design Conference Meeting</span>
@@ -137,18 +137,16 @@ const Webnar: React.FC = () => {
                 </div>
                 <div className="messageChatContainer">
                     <div className="messageChat">
-                    <TextField
-                        className="inputMessage"
-                        value={messageContent}
-                        id="outlined-basic"
-                        label="Escreva sua mensagem"
-                        variant="outlined"
-                        size="small"
-                        onChange={(e) => setMessageContent(e.target.value)}
-                    />
-                    <Button className="sendMessageButton" variant="contained" color="primary" onClick={() => addMessage()}>
-                        <MdSend />
-                    </Button>
+                        <TextField
+                            className="inputMessage"
+                            value={messageContent}
+                            id="outlined-basic"
+                            label="Escreva sua mensagem"
+                            variant="outlined"
+                            size="small"
+                            onChange={(e) => setMessageContent(e.target.value)}
+                        />
+                        <button className="sendMessageButton" onClick={() => addMessage()}><MdSend size={20}/></button>
                     </div>
                 </div>
             </div>
