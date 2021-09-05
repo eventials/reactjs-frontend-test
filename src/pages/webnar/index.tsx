@@ -111,7 +111,7 @@ const Webnar: React.FC = () => {
     const handleAllowParticipantJoin = (allowed: boolean) => {
         if(allowed) {
             setParticipantWantsJoin(false)
-            setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "video.mp4", isVideoOn: true}])
+            setMeetingParticipants([...meetingParticipants, {id: meetingParticipants.length+1, name: "Beto", image: "video.mp4", isVideoOn: true}])
             setPaticipantAllowedMessage("Participante entrou na sala")
             setParticipantWasAllowed(true)
             setTimeout(() => setPaticipantAllowedMessage(""), 5000)
