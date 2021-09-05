@@ -35,8 +35,12 @@ import {
     MessageChat,
     MessageButton,
     RemoveParticipantButton,
+    ParticipantButtonsContainer,
+    TurnParticipantScreenOff,
 } from "./styles";
 import { chatMessages, menuIconsList, participants } from './data';
+import { FaRegWindowClose } from 'react-icons/fa';
+import { CgScreen } from 'react-icons/cg';
 
 const Webnar: React.FC = () => {
     const [meetingParticipants, setMeetingParticipants] = useState(participants)
@@ -50,6 +54,7 @@ const Webnar: React.FC = () => {
     const [paticipantAllowedMessage, setPaticipantAllowedMessage] = useState("")
     const [participantWasAllowed, setParticipantWasAllowed] = useState(false)
     const [isShowRemoveUser, setIsShowRemoveUser] = useState(false)
+    const [participantIdHover, setParticipantIdHover] = useState(0)
 
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
@@ -105,7 +110,7 @@ const Webnar: React.FC = () => {
     const handleAllowParticipantJoin = (allowed: boolean) => {
         if(allowed) {
             setParticipantWantsJoin(false)
-            setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "video.mp4"}])
+            setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "video.mp4", isVideoOn: true}])
             setPaticipantAllowedMessage("Participante entrou na sala")
             setParticipantWasAllowed(true)
             setTimeout(() => setPaticipantAllowedMessage(""), 5000)
@@ -117,8 +122,8 @@ const Webnar: React.FC = () => {
         }
     }
 
-    const handleMouseEnter = () => {
-        console.log("ok")
+    const handleMouseEnter = (participantId: number) => {
+        setParticipantIdHover(participantId)
         setIsShowRemoveUser(true)
     }
 
@@ -130,6 +135,27 @@ const Webnar: React.FC = () => {
         if(window.confirm("Deseja remover participante?")) {
             setMeetingParticipants(meetingParticipants.filter((participant) => participant.id !== participantId))
         }
+    }
+
+    const handleParticipantVideoToggle = (participantId: number) => {
+        // let selectedParticipant = meetingParticipants.find((participant) => participant.id === participantId)
+        // console.log(selectedParticipant)
+        // if (selectedParticipant) {
+        //     setMeetingParticipants([...meetingParticipants, {...selectedParticipant, isVideoOn: !selectedParticipant.isVideoOn}])
+        // }
+        
+        const newParticipantsArray = meetingParticipants.map((participant) => {
+            if(participant.id === participantId) {
+                console.log(participant.isVideoOn)
+                participant.isVideoOn = !participant.isVideoOn
+                console.log(participant.isVideoOn)
+
+            }
+            return participant
+        })
+
+        setMeetingParticipants(newParticipantsArray)
+
     }
 
     return (
@@ -182,19 +208,32 @@ const Webnar: React.FC = () => {
                             return (
                                 <ParticipantsBox
                                     key={`${participant.name} - ${participant.id}`}
-                                    onMouseEnter={handleMouseEnter}
+                                    onMouseEnter={() => handleMouseEnter(participant.id)}
                                     onMouseLeave={handleMouseLeave}
                                 >
-                                    {isShowRemoveUser &&
-                                        <RemoveParticipantButton
-                                            title="Remover participante"
-                                            onClick={() => handleRemoveParticipant(participant.id)}
-                                        >
-                                            X
-                                        </RemoveParticipantButton>
+                                    {(isShowRemoveUser && participant.id === participantIdHover) &&
+                                        <ParticipantButtonsContainer>
+                                            <TurnParticipantScreenOff
+                                                title={participant.isVideoOn ? "Desligar vídeo" : "Ligar vídeo"}
+                                                onClick={() => handleParticipantVideoToggle(participant.id)}
+                                            >
+                                                {participant.isVideoOn ? 
+                                                    <FaRegWindowClose color="#FF0049" size={30}/>
+                                                    :
+                                                    <CgScreen color="#FF0049" size={30}/>
+                                                }
+                                                
+                                            </TurnParticipantScreenOff>
+                                            <RemoveParticipantButton
+                                                title="Remover participante"
+                                                onClick={() => handleRemoveParticipant(participant.id)}
+                                            >
+                                                X
+                                            </RemoveParticipantButton>
+                                        </ParticipantButtonsContainer>
                                     }
                                     <ParticipantsData>
-                                        <ParticipantVideo src={participant.image} muted autoPlay loop/>
+                                        <ParticipantVideo src={participant.isVideoOn ? participant.image : ""} muted autoPlay loop/>
                                         <ParticipanteName>{participant.name}</ParticipanteName>
                                     </ParticipantsData>
                                 </ParticipantsBox>

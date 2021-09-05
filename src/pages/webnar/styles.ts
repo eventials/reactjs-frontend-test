@@ -146,6 +146,7 @@ export const ParticipantVideo = styled.video`
     border-radius: 20px;
     border: 4px solid white;
     object-fit: cover;
+    background-color: black;
 `
 
 export const ParticipanteName = styled.p`
@@ -161,15 +162,39 @@ export const ParticipanteName = styled.p`
     text-align: center;
 `
 
-export const RemoveParticipantButton = styled.button`
+export const ParticipantButtonsContainer = styled.div`
+    display: flex;
     position: absolute;
-    top: 100;
+    justify-content: space-evenly;
+    top: 3px;
     right: 0;
-    width: 20;
-    height: 20;
-    border-radius: 20px;
+    width: 70px;
+    height: 40px;
     z-index: 100;
+`
+
+export const RemoveParticipantButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+`
+
+export const TurnParticipantScreenOff = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
 `
 
 export const MenuContainer = styled.div`
