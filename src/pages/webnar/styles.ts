@@ -30,8 +30,11 @@ export const WebnarContainer = styled.div`
         border-radius: 20px;
     }
 
-    .logoContainer {
-        width: 10%;
+    .logo {
+        width: 50px;
+        border-radius: 50px;
+        margin-left: 10px;
+        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
     }
 
     .titleContainer {
@@ -243,24 +246,31 @@ export const WebnarContainer = styled.div`
     .messageChatContainer {
         display: flex;
         justify-content: center;
+        align-items: center;
         height: 60px;
         width: 97%;
         margin-bottom: 15px;
-        border: 1px solid pink;
     }
 
     .messageChat {
         display: flex;
-        justify-content: space12-around;
+        justify-content: space-around;
         border-radius: 10px;
         align-items: center;
         box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
         background-color: white;
         width: 95%;
+        height: 100%;
     }
 
     .sendMessageButton {
-        width: 30px;
+        width: 45px;
+        height: 37px;
+        background-color: #4705EB;
+        border: none;
+        border-radius: 7px;
+        color: white;
+
     }
 
 `;
