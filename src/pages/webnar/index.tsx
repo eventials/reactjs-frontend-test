@@ -3,29 +3,37 @@ import { MdAirplay } from 'react-icons/md';
 import { RiUserAddLine } from 'react-icons/ri';
 import { AiOutlineControl } from 'react-icons/ai';
 import { MdSend } from 'react-icons/md';
+import { HiOutlineUserRemove } from 'react-icons/hi';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { WebnarContainer } from "./styles";
+import { ParticipantAllowedMessageContainer, WebnarContainer } from "./styles";
 import { chatMessages, menuIconsList, participants } from './data';
 
 const Webnar: React.FC = () => {
     const [meetingParticipants, setMeetingParticipants] = useState(participants)
     const [messageContent, setMessageContent] = useState("")
     const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
-    const [isMainVideoOn, setIsMainVideoOn] = useState(false)
+    const [isMainVideoOn, setIsMainVideoOn] = useState(true)
     const [isMicrophoneOn, setIsMicrophoneOn] = useState(false)
     const [isShareScreenOn, setIsShareScreenOn] = useState(true)
     const [isVolumeOn, setIsVolumeOn] = useState(false)
     const [participantWantsJoin, setParticipantWantsJoin] = useState(false)
+    const [paticipantAllowedMessage, setPaticipantAllowedMessage] = useState("")
+    const [participantWasAllowed, setParticipantWasAllowed] = useState(false)
+
 
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
+            setPaticipantAllowedMessage("")
             setParticipantWantsJoin(true)
         }
     });
 
     const addMessage = () => {
-        setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 1"}])
+        if(messageContent !== "") {
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 1"}])
+            setMessageContent("")
+        }
     }
 
     const handleClickMenuIcon = (handleFunction: string) => {
@@ -58,10 +66,16 @@ const Webnar: React.FC = () => {
         }
     }
 
-    const handleAllowParticipantJoin = () => {
-        if(participantWantsJoin) {
+    const handleAllowParticipantJoin = (allowed: boolean) => {
+        if(allowed) {
             setParticipantWantsJoin(false)
             setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "participant1.jpg"}])
+            setPaticipantAllowedMessage("Participante entrou na sala")
+            setParticipantWasAllowed(true)
+        } else if (!allowed) {
+            setParticipantWantsJoin(false)
+            setPaticipantAllowedMessage("Participante foi recusado")
+            setParticipantWasAllowed(false)
         }
     }
 
@@ -74,17 +88,32 @@ const Webnar: React.FC = () => {
                         <div className="title">
                             <span>UX/UI Design Conference Meeting</span>
                         </div>
-                        <div className="joinParticipantContainer">
-                            {participantWantsJoin && <span>Participante deseja entrar na sala</span>}
-                            <div className="headerIconsContainer">
-                                <RiUserAddLine
-                                    size={30}
-                                    color="#FFBD2D"
-                                    title="Adicionar participante"
-                                    onClick={handleAllowParticipantJoin}
-                                    />
-                            </div>
-                        </div>
+                            {participantWantsJoin &&
+                                 <div className="joinParticipantContainer">
+                                    <span>Participante deseja entrar na sala</span>
+                                    <div className="headerIconsContainer">
+                                        <RiUserAddLine
+                                            size={30}
+                                            color="#FFBD2D"
+                                            title="Aceitar participante"
+                                            onClick={() => handleAllowParticipantJoin(true)}
+                                            />
+                                    </div> 
+                                    <div className="headerIconsContainer">
+                                        <HiOutlineUserRemove size={30}
+                                            color="#FF0049"
+                                            title="Recusar participante"
+                                            onClick={() => handleAllowParticipantJoin(false)}
+                                        />
+                                        
+                                    </div>
+                                </div>
+                            }
+                            {paticipantAllowedMessage !== "" &&
+                                <ParticipantAllowedMessageContainer color={participantWasAllowed ? "#FFBD2D" : "#FF0049"} className="participantAllowedMessageContainer">
+                                    <span>{paticipantAllowedMessage}</span>
+                                </ParticipantAllowedMessageContainer>
+                            }  
                     </div>
                 </div>
                 <div className="wrap">

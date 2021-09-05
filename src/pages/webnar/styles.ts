@@ -197,7 +197,8 @@ export const WebnarContainer = styled.div`
 
     .chatContainerBody {
         width: 100%;
-        height: 100%;
+        height: 800px;
+        overflow-y: auto;
     }
 
     .messageContainer {
@@ -256,6 +257,7 @@ export const WebnarContainer = styled.div`
         height: 60px;
         width: 97%;
         margin-bottom: 15px;
+        margin-top: 15px;
     }
 
     .messageChat {
@@ -280,3 +282,16 @@ export const WebnarContainer = styled.div`
     }
 
 `;
+
+export const ParticipantAllowedMessageContainer = styled.div` 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 25px;
+    color: white;
+    width: 250px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: ${props => props.color};
+    font-weight: bolder;
+`

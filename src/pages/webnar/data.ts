@@ -1,7 +1,7 @@
-import { BsChat, BsMic, BsMicMute } from "react-icons/bs"
+import { BsMic, BsMicMute } from "react-icons/bs"
 import { CgScreen } from "react-icons/cg"
 import { FiVideo, FiVideoOff, FiVolume2, FiVolumeX } from "react-icons/fi"
-import { IoExitOutline, IoVideocamOutline } from "react-icons/io5"
+import { IoExitOutline } from "react-icons/io5"
 import { FaRegWindowClose } from "react-icons/fa"
 
 export const participants = [
@@ -13,10 +13,10 @@ export const participants = [
 ]
 
 export let chatMessages = [
-    {content: "oi, que legal", participantName: "participante1"},
-    {content: "que bom nẽ", participantName: "participante1"},
-    {content: "", participantName: "participante1"},
-    {content: "", participantName: "participante1"},
+    {content: "msg1", participantName: "participante1"},
+    {content: "msg2", participantName: "participante1"},
+    {content: "msg3", participantName: "participante1"},
+    {content: "msg4", participantName: "participante1"},
 ]
 
 export let menuIconsList = [
