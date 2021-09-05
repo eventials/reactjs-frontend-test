@@ -199,7 +199,7 @@ const Webinar: React.FC = () => {
                 </HeaderContainer>
                 <Wrap>
                     <BgVideo>
-                        <MainVideo src={isMainVideoOn ? "video.mp4": ""} muted autoPlay loop/>
+                        <MainVideo src={isMainVideoOn ? "mainVideo.mp4": ""} muted autoPlay loop/>
                     </BgVideo>
 
                     <ParticipantsVideoContainer>
@@ -237,7 +237,7 @@ const Webinar: React.FC = () => {
                     {chatMessagesList.map((message) => {
                         return (
                             <MessageContainer>
-                                <MessageImage src="bruna.jpeg" alt={message.participantName} />
+                                <MessageImage src="image8.png" alt={message.participantName} />
                                 <MessageContentContainer>
                                     <MessageParticipantName>{message.participantName}</MessageParticipantName>
                                     <Message>{message.content}</Message>
