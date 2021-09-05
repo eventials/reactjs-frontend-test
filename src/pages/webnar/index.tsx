@@ -23,6 +23,17 @@ import {
     ParticipanteName,
     MenuContainer,
     MenuItemContainer,
+    RigthContainer,
+    HeaderChat,
+    ChatContainerBody,
+    MessageContainer,
+    MessageImage,
+    MessageContentContainer,
+    MessageParticipantName,
+    Message,
+    MessageChatContainer,
+    MessageChat,
+    MessageButton,
 } from "./styles";
 import { chatMessages, menuIconsList, participants } from './data';
 
@@ -190,25 +201,25 @@ const Webnar: React.FC = () => {
                     })}
                 </MenuContainer>    
             </LeftContainer> 
-            <div className="rigthContainer">
-                <div className="headerChat">
+            <RigthContainer>
+                <HeaderChat>
                     <p>Chat</p>
-                </div>
-                <div className="chatContainerBody">
+                </HeaderChat>
+                <ChatContainerBody>
                     {chatMessagesList.map((message) => {
                         return (
-                            <div className="messageContainer">
-                                <img className="messageImage" src="bruna.jpeg" alt={message.participantName} />
-                                <div className="messageContentContainer">
-                                    <span className="messageParticipantName">{message.participantName}</span>
-                                    <span className="message">{message.content}</span>
-                                </div>
-                            </div>
+                            <MessageContainer>
+                                <MessageImage src="bruna.jpeg" alt={message.participantName} />
+                                <MessageContentContainer>
+                                    <MessageParticipantName>{message.participantName}</MessageParticipantName>
+                                    <Message>{message.content}</Message>
+                                </MessageContentContainer>
+                            </MessageContainer>
                         )
                     })}
-                </div>
-                <div className="messageChatContainer">
-                    <div className="messageChat">
+                </ChatContainerBody>
+                <MessageChatContainer>
+                    <MessageChat>
                         <TextField
                             className="inputMessage"
                             value={messageContent}
@@ -218,10 +229,10 @@ const Webnar: React.FC = () => {
                             size="small"
                             onChange={(e) => setMessageContent(e.target.value)}
                         />
-                        <button className="sendMessageButton" onClick={() => addMessage()}><MdSend size={20}/></button>
-                    </div>
-                </div>
-            </div>
+                        <MessageButton onClick={() => addMessage()}><MdSend size={20}/></MessageButton>
+                    </MessageChat>
+                </MessageChatContainer>
+            </RigthContainer>
         </WebnarContainer>
     )
 }

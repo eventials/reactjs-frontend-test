@@ -10,122 +10,6 @@ export const WebnarContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-
-
-    .chatContainer {
-        background-color: red;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-
-
-
-    .menuIcon {
-        margin: 10px;
-        border-right: 80px;
-    }
-
-    .rigthContainer {
-        height: 95%;
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #EFF2F8;
-        border-radius: 20px;
-    }
-
-    .chatContainerBody {
-        width: 100%;
-        height: 800px;
-        overflow-y: auto;
-    }
-
-    .messageContainer {
-        display: flex;
-        align-items: center;
-        width: 90%;
-        height: 60px;
-        border-radius: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-bottom: 20px;
-    }
-
-    .messageImage {
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        margin-right: 10px;
-    }
-
-    .messageContentContainer {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
-        width: 100%;
-        height: 60px;
-        border-radius: 10px;
-    }
-
-    .messageParticipantName {
-        font-weight: bold;
-        font-size: 14px;
-        margin-left: 15px;
-        margin-top: 5px;
-    }
-
-    .message {
-        margin-left: 15px;
-        color: gray;
-    }
-
-    .headerChat {
-        display: flex;
-        justify-content: start;
-        width: 100%;
-        margin-left: 35px;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .messageChatContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60px;
-        width: 97%;
-        margin-bottom: 15px;
-        margin-top: 15px;
-    }
-
-    .messageChat {
-        display: flex;
-        justify-content: space-around;
-        border-radius: 10px;
-        align-items: center;
-        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
-        background-color: white;
-        width: 95%;
-        height: 100%;
-    }
-
-    .sendMessageButton {
-        width: 45px;
-        height: 37px;
-        background-color: #4705EB;
-        border: none;
-        border-radius: 7px;
-        color: white;
-
-    }
-
 `;
 
 export const LeftContainer = styled.div`
@@ -287,17 +171,130 @@ export const MenuContainer = styled.div`
 `
 
 export const MenuItemContainer = styled.div`
-        background-color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 60px;
-        height: 60px;
-        border-radius: 50px;
-        margin-right: 15px;
-        margin-left: 15px;
-        box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin-right: 15px;
+    margin-left: 15px;
+    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+
+    .menuIcon {
+        margin: 10px;
+        border-right: 80px;
+    }
 `
+
+export const RigthContainer = styled.div`
+    height: 95%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EFF2F8;
+    border-radius: 20px;
+`
+
+export const HeaderChat = styled.div`
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    margin-left: 35px;
+    font-size: 24px;
+    font-weight: bold;
+`
+
+export const ChatContainerBody = styled.div`
+    width: 100%;
+    height: 800px;
+    overflow-y: auto;
+`
+
+export const MessageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 60px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+`
+
+export const MessageImage = styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+`
+
+export const MessageContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+`
+
+export const MessageParticipantName = styled.span`
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 5px;
+`
+
+export const Message = styled.span`
+    margin-left: 15px;
+    color: gray;
+`
+
+export const MessageChatContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 97%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+`
+
+export const MessageChat = styled.div`
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
+    background-color: white;
+    width: 95%;
+    height: 100%;
+`
+
+export const MessageButton = styled.button`
+    width: 45px;
+    height: 37px;
+    background-color: #4705EB;
+    border: none;
+    border-radius: 7px;
+    color: white;
+`
+
+
+
+
+
+
+
+
+
+
+
+
     
 
     
