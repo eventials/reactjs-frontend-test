@@ -12,8 +12,6 @@ const AuthProvider: React.FC = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(true)
 
     const handleLogin = () => {
-        console.log("handle login")
-        console.log(authenticated)
         setAuthenticated(true)
         const cookies = new Cookies();
     }
