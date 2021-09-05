@@ -21,11 +21,17 @@ const Webnar: React.FC = () => {
     const [paticipantAllowedMessage, setPaticipantAllowedMessage] = useState("")
     const [participantWasAllowed, setParticipantWasAllowed] = useState(false)
 
-
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
             setPaticipantAllowedMessage("")
             setParticipantWantsJoin(true)
+        }
+    });
+
+    window.addEventListener("keydown", function(event) {
+        if (event.ctrlKey && event.shiftKey && event.key === 'X') {
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 2"}])
+
         }
     });
 
@@ -72,10 +78,12 @@ const Webnar: React.FC = () => {
             setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "participant1.jpg"}])
             setPaticipantAllowedMessage("Participante entrou na sala")
             setParticipantWasAllowed(true)
+            setTimeout(() => setPaticipantAllowedMessage(""), 5000)
         } else if (!allowed) {
             setParticipantWantsJoin(false)
             setPaticipantAllowedMessage("Participante foi recusado")
             setParticipantWasAllowed(false)
+            setTimeout(() => setPaticipantAllowedMessage(""), 5000)
         }
     }
 
