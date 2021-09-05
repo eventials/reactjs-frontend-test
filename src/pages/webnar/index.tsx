@@ -43,8 +43,15 @@ import { chatMessages, menuIconsList, participants } from './data';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { CgScreen } from 'react-icons/cg';
 
+interface IMeetingParticipant {
+    id: number;
+    name: string;
+    image: string;
+    isVideoOn: boolean;
+}
+
 const Webnar: React.FC = () => {
-    const [meetingParticipants, setMeetingParticipants] = useState(participants)
+    const [meetingParticipants, setMeetingParticipants] = useState<IMeetingParticipant[]>([])
     const [messageContent, setMessageContent] = useState("")
     const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
     const [isMainVideoOn, setIsMainVideoOn] = useState(true)
@@ -109,12 +116,15 @@ const Webnar: React.FC = () => {
     }
 
     const handleAllowParticipantJoin = (allowed: boolean) => {
-        if(allowed) {
+        if(allowed && meetingParticipants.length < 12) {
             setParticipantWantsJoin(false)
-            setMeetingParticipants([...meetingParticipants, {id: meetingParticipants.length+1, name: "Beto", image: "video.mp4", isVideoOn: true}])
+            const newParticipantId = meetingParticipants.length+1
+            setMeetingParticipants([...meetingParticipants, participants[meetingParticipants.length]])
             setPaticipantAllowedMessage("Participante entrou na sala")
             setParticipantWasAllowed(true)
             setTimeout(() => setPaticipantAllowedMessage(""), 5000)
+            const participantsIds = meetingParticipants.map((participant) => participant?.id)
+            localStorage.setItem('participant', JSON.stringify({ids: [...participantsIds, newParticipantId]}))
         } else if (!allowed) {
             setParticipantWantsJoin(false)
             setPaticipantAllowedMessage("Participante foi recusado")
@@ -139,24 +149,13 @@ const Webnar: React.FC = () => {
     }
 
     const handleParticipantVideoToggle = (participantId: number) => {
-        // let selectedParticipant = meetingParticipants.find((participant) => participant.id === participantId)
-        // console.log(selectedParticipant)
-        // if (selectedParticipant) {
-        //     setMeetingParticipants([...meetingParticipants, {...selectedParticipant, isVideoOn: !selectedParticipant.isVideoOn}])
-        // }
-        
         const newParticipantsArray = meetingParticipants.map((participant) => {
             if(participant.id === participantId) {
-                console.log(participant.isVideoOn)
                 participant.isVideoOn = !participant.isVideoOn
-                console.log(participant.isVideoOn)
-
             }
             return participant
         })
-
         setMeetingParticipants(newParticipantsArray)
-
     }
 
     return (
@@ -192,7 +191,6 @@ const Webnar: React.FC = () => {
                             }
                             {paticipantAllowedMessage !== "" &&
                                 <ParticipantAllowedMessageContainer
-                                    // className="participantAllowedMessageContainer"
                                     color={participantWasAllowed ? "#FFBD2D" : "#FF0049"}
                                 >
                                     <span>{paticipantAllowedMessage}</span>

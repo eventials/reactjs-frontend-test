@@ -10,6 +10,13 @@ export const participants = [
     {id: 3, name: "Paula", image: "video.mp4", isVideoOn: true},
     {id: 4, name: "Fernanda", image: "video.mp4", isVideoOn: true},
     {id: 5, name: "Mariana", image: "video.mp4", isVideoOn: true},
+    {id: 6, name: "Juliana", image: "video.mp4", isVideoOn: true},
+    {id: 7, name: "Maurício", image: "video.mp4", isVideoOn: true},
+    {id: 8, name: "Rubens", image: "video.mp4", isVideoOn: true},
+    {id: 9, name: "Amanda", image: "video.mp4", isVideoOn: true},
+    {id: 10, name: "Nicolas", image: "video.mp4", isVideoOn: true},
+    {id: 11, name: "Fábio", image: "video.mp4", isVideoOn: true},
+    {id: 12, name: "Maria", image: "video.mp4", isVideoOn: true},
 ]
 
 export let chatMessages = [
