@@ -125,6 +125,7 @@ export const ParticipantsVideoContainer = styled.div`
 `
 
 export const ParticipantsBox = styled.div`
+    position: relative;
     width: 130px;
     height: 130px;
     margin-bottom: 10px;
@@ -158,6 +159,17 @@ export const ParticipanteName = styled.p`
     border-radius: 20px;
     width: 100px;
     text-align: center;
+`
+
+export const RemoveParticipantButton = styled.button`
+    position: absolute;
+    top: 100;
+    right: 0;
+    width: 20;
+    height: 20;
+    border-radius: 20px;
+    z-index: 100;
+    border: none;
 `
 
 export const MenuContainer = styled.div`

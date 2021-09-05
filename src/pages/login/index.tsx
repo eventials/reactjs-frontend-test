@@ -11,10 +11,9 @@ import Cookies from 'universal-cookie';
 const Login = () => {
   const {authenticated, handleLogin} = useContext(Context);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isEmailInvalid, setIsEmailInvalid] = useState(false)
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false)
-
-  const [password, setPassword] = useState('');
 
   const handleLoginClick = () => {
     if (email === "") {
@@ -23,10 +22,6 @@ const Login = () => {
 
     if (password === "") {
       setIsPasswordInvalid(true)
-    }
-
-    if (password.length < 6) {
-      // window.alert("")
     }
 
     var token = jwt.sign({ email }, '0xfbtqn73b582b162v39n31819123626fs165152fs52b');

@@ -34,6 +34,7 @@ import {
     MessageChatContainer,
     MessageChat,
     MessageButton,
+    RemoveParticipantButton,
 } from "./styles";
 import { chatMessages, menuIconsList, participants } from './data';
 
@@ -48,6 +49,7 @@ const Webnar: React.FC = () => {
     const [participantWantsJoin, setParticipantWantsJoin] = useState(false)
     const [paticipantAllowedMessage, setPaticipantAllowedMessage] = useState("")
     const [participantWasAllowed, setParticipantWasAllowed] = useState(false)
+    const [isShowRemoveUser, setIsShowRemoveUser] = useState(false)
 
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
@@ -103,7 +105,7 @@ const Webnar: React.FC = () => {
     const handleAllowParticipantJoin = (allowed: boolean) => {
         if(allowed) {
             setParticipantWantsJoin(false)
-            setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "participant1.jpg"}])
+            setMeetingParticipants([...meetingParticipants, {id: 1, name: "Beto", image: "video.mp4"}])
             setPaticipantAllowedMessage("Participante entrou na sala")
             setParticipantWasAllowed(true)
             setTimeout(() => setPaticipantAllowedMessage(""), 5000)
@@ -112,6 +114,21 @@ const Webnar: React.FC = () => {
             setPaticipantAllowedMessage("Participante foi recusado")
             setParticipantWasAllowed(false)
             setTimeout(() => setPaticipantAllowedMessage(""), 5000)
+        }
+    }
+
+    const handleMouseEnter = () => {
+        console.log("ok")
+        setIsShowRemoveUser(true)
+    }
+
+    const handleMouseLeave = () => {
+        setIsShowRemoveUser(false)
+    }
+
+    const handleRemoveParticipant = (participantId: number) => {
+        if(window.confirm("Deseja remover participante?")) {
+            setMeetingParticipants(meetingParticipants.filter((participant) => participant.id !== participantId))
         }
     }
 
@@ -146,7 +163,10 @@ const Webnar: React.FC = () => {
                                 </JoinParticipantContainer>
                             }
                             {paticipantAllowedMessage !== "" &&
-                                <ParticipantAllowedMessageContainer color={participantWasAllowed ? "#FFBD2D" : "#FF0049"} className="participantAllowedMessageContainer">
+                                <ParticipantAllowedMessageContainer
+                                    className="participantAllowedMessageContainer"
+                                    color={participantWasAllowed ? "#FFBD2D" : "#FF0049"}
+                                >
                                     <span>{paticipantAllowedMessage}</span>
                                 </ParticipantAllowedMessageContainer>
                             }  
@@ -160,7 +180,19 @@ const Webnar: React.FC = () => {
                     <ParticipantsVideoContainer>
                         {meetingParticipants.map((participant) => {
                             return (
-                                <ParticipantsBox key={`${participant.name} - ${participant.id}`}>
+                                <ParticipantsBox
+                                    key={`${participant.name} - ${participant.id}`}
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    {isShowRemoveUser &&
+                                        <RemoveParticipantButton
+                                            title="Remover participante"
+                                            onClick={() => handleRemoveParticipant(participant.id)}
+                                        >
+                                            X
+                                        </RemoveParticipantButton>
+                                    }
                                     <ParticipantsData>
                                         <ParticipantVideo src={participant.image} muted autoPlay loop/>
                                         <ParticipanteName>{participant.name}</ParticipanteName>
