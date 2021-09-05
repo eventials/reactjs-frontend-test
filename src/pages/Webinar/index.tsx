@@ -11,10 +11,6 @@ import {
     Logo,
     TitleContainer,
     Title,
-    JoinParticipantContainer,
-    JoinParticipandMessage,
-    HeaderIconsContainer,
-    ParticipantAllowedMessageContainer,
     Wrap,
     BgVideo,
     MainVideo,
@@ -36,13 +32,13 @@ import {
     MessageChatContainer,
     MessageChat,
     MessageButton,
-    RemoveParticipantButton,
-    ParticipantButtonsContainer,
-    TurnParticipantScreenOff,
 } from "./styles";
+import JoinParticipantContainer from '../Webinar/components/JoinParticipantContainer'
 import { chatMessages, menuIconsList, participants } from './data';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { CgScreen } from 'react-icons/cg';
+import ParticipantAllowedMessageContainer from './components/ParticipantAllowedMessageContainer';
+import ParticipantButtonsContainer from './components/ParticipantButtonsContainer';
 
 interface IMeetingParticipant {
     id: number;
@@ -193,33 +189,13 @@ const Webinar: React.FC = () => {
                             <span>UX/UI Design Conference Meeting</span>
                         </Title>
                             {participantWantsJoin &&
-                                 <JoinParticipantContainer>
-                                    <JoinParticipandMessage>Participante deseja entrar na sala</JoinParticipandMessage>
-                                    <HeaderIconsContainer>
-                                        <RiUserAddLine
-                                            size={30}
-                                            color="#FFBD2D"
-                                            title="Aceitar participante"
-                                            onClick={() => handleAllowParticipantJoin(true)}
-                                            />
-                                    </HeaderIconsContainer> 
-                                    <HeaderIconsContainer>
-                                        <HiOutlineUserRemove
-                                            size={30}
-                                            color="#FF0049"
-                                            title="Recusar participante"
-                                            onClick={() => handleAllowParticipantJoin(false)}
-                                        />
-                                        
-                                    </HeaderIconsContainer>
-                                </JoinParticipantContainer>
+                                <JoinParticipantContainer handleAllowParticipantJoin={handleAllowParticipantJoin}/>  
                             }
                             {paticipantAllowedMessage !== "" &&
                                 <ParticipantAllowedMessageContainer
-                                    color={participantWasAllowed ? "#FFBD2D" : "#FF0049"}
-                                >
-                                    <span>{paticipantAllowedMessage}</span>
-                                </ParticipantAllowedMessageContainer>
+                                    participantWasAllowed={participantWasAllowed}
+                                    paticipantAllowedMessage={paticipantAllowedMessage}
+                                />
                             }  
                     </TitleContainer>
                 </HeaderContainer>
@@ -237,25 +213,11 @@ const Webinar: React.FC = () => {
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     {(isShowRemoveUser && participant.id === participantIdHover) &&
-                                        <ParticipantButtonsContainer>
-                                            <TurnParticipantScreenOff
-                                                title={participant.isVideoOn ? "Desligar vídeo" : "Ligar vídeo"}
-                                                onClick={() => handleParticipantVideoToggle(participant.id)}
-                                            >
-                                                {participant.isVideoOn ? 
-                                                    <FaRegWindowClose color="#FF0049" size={30}/>
-                                                    :
-                                                    <CgScreen color="#FF0049" size={30}/>
-                                                }
-                                                
-                                            </TurnParticipantScreenOff>
-                                            <RemoveParticipantButton
-                                                title="Remover participante"
-                                                onClick={() => handleRemoveParticipant(participant.id)}
-                                            >
-                                                X
-                                            </RemoveParticipantButton>
-                                        </ParticipantButtonsContainer>
+                                        <ParticipantButtonsContainer
+                                            participant={participant}
+                                            handleParticipantVideoToggle={handleParticipantVideoToggle} 
+                                            handleRemoveParticipant={handleRemoveParticipant}
+                                        />
                                     }
                                     <ParticipantsData>
                                         <ParticipantVideo src={participant.isVideoOn ? participant.image : ""} muted autoPlay loop/>

@@ -55,50 +55,6 @@ export const Title = styled.div`
     
 `
 
-export const JoinParticipantContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-export const JoinParticipandMessage = styled.span`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 290px;
-    height: 35px;
-    background-color: #6200FF;
-    color: white;
-    border-radius: 20px;
-    font-weight: bolder;
-`
-
-export const HeaderIconsContainer = styled.div`
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    margin-right: 30px;
-    margin-left: 15px;
-    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
-`
-
-export const ParticipantAllowedMessageContainer = styled.div` 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 25px;
-    color: white;
-    width: 250px;
-    height: 35px;
-    border-radius: 20px;
-    background-color: ${props => props.color};
-    font-weight: bolder;
-`
-
 export const Wrap = styled.div`
     width: 100%;
     height: 77%;
@@ -175,41 +131,6 @@ export const ParticipanteName = styled.p`
     border-radius: 20px;
     width: 100px;
     text-align: center;
-`
-
-export const ParticipantButtonsContainer = styled.div`
-    display: flex;
-    position: absolute;
-    justify-content: space-evenly;
-    top: 3px;
-    right: 0;
-    width: 70px;
-    height: 40px;
-    z-index: 100;
-`
-
-export const RemoveParticipantButton = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 20px;
-    margin-left: 5px;
-    font-weight: bold;
-    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
-`
-
-export const TurnParticipantScreenOff = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(180, 180, 180, 0.8);
 `
 
 export const MenuContainer = styled.div`

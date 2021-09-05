@@ -66,7 +66,7 @@ const Login = () => {
         <Title>Login</Title>
         <Text>Adicione suas credenciais para acessar sua conta</Text>
         {(isEmailInvalid || isPasswordInvalid) && 
-          <ErrorMessage>Preenchimento obrigatório</ErrorMessage>
+          <ErrorMessage>Campos com preenchimento obrigatório</ErrorMessage>
         }
         <InputLogin>
           <TextField
