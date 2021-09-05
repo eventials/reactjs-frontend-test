@@ -9,13 +9,20 @@ import { WebnarContainer } from "./styles";
 import { chatMessages, menuIconsList, participants } from './data';
 
 const Webnar: React.FC = () => {
+    const [meetingParticipants, setMeetingParticipants] = useState(participants)
     const [messageContent, setMessageContent] = useState("")
     const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
     const [isMainVideoOn, setIsMainVideoOn] = useState(false)
     const [isMicrophoneOn, setIsMicrophoneOn] = useState(false)
     const [isShareScreenOn, setIsShareScreenOn] = useState(true)
     const [isVolumeOn, setIsVolumeOn] = useState(false)
+    const [participantWantsJoin, setParticipantWantsJoin] = useState(false)
 
+    window.addEventListener("keydown", function(event) {
+        if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
+            setParticipantWantsJoin(true)
+        }
+    });
 
     const addMessage = () => {
         setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 1"}])
@@ -61,6 +68,7 @@ const Webnar: React.FC = () => {
                             <span>UX/UI Design Conference Meeting</span>
                         </div>
                         <div className="headerIconsContainer">
+                            {participantWantsJoin && <span>Participante deseja entrar na sala</span>}
                             <RiUserAddLine
                                 size={30}
                                 color="#FFBD2D"
@@ -75,7 +83,7 @@ const Webnar: React.FC = () => {
                     </div>
 
                     <div className="participantsVideoContainer">
-                        {participants.map((participant) => {
+                        {meetingParticipants.map((participant) => {
                             return (
                                 <div className="participantsBox" key={`${participant.name} - ${participant.id}`}>
                                     <div className="participantsData">
