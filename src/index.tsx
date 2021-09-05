@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './pages/login';
-import Webnar from './pages/webnar';
 import reportWebVitals from './reportWebVitals';
 import Routes from './routes/index';
 

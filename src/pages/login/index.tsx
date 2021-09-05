@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   LoginContainer,
   Container,
@@ -9,12 +9,10 @@ import {
 } from './styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Context } from '../../Context/AuthContext';
 import jwt from 'jsonwebtoken'
 import Cookies from 'universal-cookie';
 
 const Login = () => {
-  const {authenticated, handleLogin} = useContext(Context);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEmailInvalid, setIsEmailInvalid] = useState(false)
@@ -32,7 +30,6 @@ const Login = () => {
     var token = jwt.sign({ email }, '0fbda573b582b162f39n31819123626fs165152fa52b');
     const cookies = new Cookies();
     cookies.set('auth_token', token, { path: '/' });
-    handleLogin()
     localStorage.removeItem('participants')
     window.location.assign('/webnar');
   }
