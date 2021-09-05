@@ -1,5 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { LoginContainer, Title } from './styles';
+import {
+  LoginContainer,
+  Container,
+  Title,
+  Text,
+  InputLogin,
+} from './styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Context } from '../../Context/AuthContext';
@@ -38,10 +44,10 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <div className="container">
+      <Container>
         <Title>Login</Title>
-        <p className="text">Adicione suas credenciais para acessar sua conta</p>
-        <div className="inputLogin">
+        <Text>Adicione suas credenciais para acessar sua conta</Text>
+        <InputLogin>
           <TextField
             className="textInput"
             error={isEmailInvalid}
@@ -61,12 +67,12 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
+        </InputLogin>
 
         <Button onClick={handleLoginClick} variant="contained" color="primary" className="enterBtn">
           Entrar
         </Button>
-      </div>
+      </Container>
     </LoginContainer>
   );
 }
