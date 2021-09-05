@@ -12,8 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import { Context } from '../../Context/AuthContext';
 import jwt from 'jsonwebtoken'
 import Cookies from 'universal-cookie';
- 
-
 
 const Login = () => {
   const {authenticated, handleLogin} = useContext(Context);
@@ -31,11 +29,12 @@ const Login = () => {
       setIsPasswordInvalid(true)
     }
 
-    var token = jwt.sign({ email }, '0xfbtqn73b582b162v39n31819123626fs165152fs52b');
+    var token = jwt.sign({ email }, '0fbda573b582b162f39n31819123626fs165152fa52b');
     const cookies = new Cookies();
-    cookies.set('token', token, { path: '/' });
+    cookies.set('auth_token', token, { path: '/' });
     handleLogin()
-    // window.location.assign('/webnar');  
+    localStorage.removeItem('participants')
+    window.location.assign('/webnar');
   }
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {

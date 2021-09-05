@@ -51,7 +51,16 @@ interface IMeetingParticipant {
 }
 
 const Webnar: React.FC = () => {
-    const [meetingParticipants, setMeetingParticipants] = useState<IMeetingParticipant[]>([])
+    const getInitialParticipants = () => {
+        const participantsFromCurrentMeeting = localStorage.getItem('participants')
+        if (participantsFromCurrentMeeting !== null) {
+            const currentParticipantIds = JSON.parse(participantsFromCurrentMeeting).ids
+            const initialParticipants = participants.filter((participant) => currentParticipantIds.includes(participant.id))
+            return initialParticipants
+        }
+        return []
+    }
+    const [meetingParticipants, setMeetingParticipants] = useState<IMeetingParticipant[]>(getInitialParticipants())
     const [messageContent, setMessageContent] = useState("")
     const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
     const [isMainVideoOn, setIsMainVideoOn] = useState(true)
@@ -124,7 +133,7 @@ const Webnar: React.FC = () => {
             setParticipantWasAllowed(true)
             setTimeout(() => setPaticipantAllowedMessage(""), 5000)
             const participantsIds = meetingParticipants.map((participant) => participant?.id)
-            localStorage.setItem('participant', JSON.stringify({ids: [...participantsIds, newParticipantId]}))
+            localStorage.setItem('participants', JSON.stringify({ids: [...participantsIds, newParticipantId]}))
         } else if (!allowed) {
             setParticipantWantsJoin(false)
             setPaticipantAllowedMessage("Participante foi recusado")
@@ -144,7 +153,10 @@ const Webnar: React.FC = () => {
 
     const handleRemoveParticipant = (participantId: number) => {
         if(window.confirm("Deseja remover participante?")) {
-            setMeetingParticipants(meetingParticipants.filter((participant) => participant.id !== participantId))
+            const filteredParticipants = meetingParticipants.filter((participant) => participant.id !== participantId)
+            setMeetingParticipants(filteredParticipants)
+            const participantsIds = filteredParticipants.map((participant) => participant.id)
+            localStorage.setItem('participants', JSON.stringify({ids: participantsIds}))
         }
     }
 
