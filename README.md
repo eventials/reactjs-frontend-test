@@ -36,5 +36,4 @@ O último botão sai da chamada e você será redirecionado para a página de lo
 Os outros botões não tem funções implementadas.\
 No chat é possível escrever e enviar mensagem. Caso queira enviar mensagem como outro participante, digite a mensagem e pressione as teclas `CTRL+SHIFT+X`.\
 Os ids dos participantes presentes na chamada estão guardados no local storage, dessa forma, ao recarregar a página ela volta com todos os participantes já aceitos.\
-É possível adicionar 12 participantes.\
-\
+É possível adicionar 12 participantes.
