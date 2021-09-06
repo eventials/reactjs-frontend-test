@@ -22,11 +22,11 @@ Inicialize a aplicação com `yarn start`;
 
 ### Features
 
-Página de login\
+**Página de login**
 Aceita qualquer combinação de caracteres para o email e senha, nenhum dos dois campos pode ficar em branco.\
 Ao logar, será gerado um `cookie` com chave `auth_token` e cujo valor é um JWT criado a partir do email, e você será direcionado para a página do webinar.\
 \
-Página do webinar\
+**Página do webinar**
 Essa página mostra um vídeo simulando a tela do owner, então o vídeo principal (maior) é do owner e os vídeos menores dos outros participantes.\
 Para adicionar outros participantes pressione as teclas `CTRL+SHIFT+Z`, uma mensagem aparecerá na parte superior direita da página e você tem a opção de aceitar ou rejeitar o participante.\
 É possível também excluir ou desativar a câmera de um participante, para isso posicione o cursor sobre o vídeo do participante de interesse e aparecerá 2 ícones: remover participante e desligar/ligar vídeo.\
