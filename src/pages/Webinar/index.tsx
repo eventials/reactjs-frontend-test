@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { MdSend } from 'react-icons/md';
-import TextField from '@material-ui/core/TextField';
 import Cookies from 'universal-cookie';
 import {
     WebinarContainer,
