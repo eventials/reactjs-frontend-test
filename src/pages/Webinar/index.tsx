@@ -5,11 +5,7 @@ import Cookies from 'universal-cookie';
 import {
     WebinarContainer,
     LeftContainer,
-    HeaderContainer,
-    Logo,
-    TitleContainer,
-    Title,
-    Wrap,
+    MainVideoContainer,
     BgVideo,
     MainVideo,
     ParticipantsVideoContainer,
@@ -26,6 +22,7 @@ import ParticipantsData from './components/ParticipantsData'
 import MenuContainer from './components/MenuContainer'
 import MessageChatContainer from './components/MessageChatContainer'
 import MessageContainer from './components/MessageContainer'
+import HeaderContainer from './components/HeaderContainer'
 
 interface IMeetingParticipant {
     id: number;
@@ -44,6 +41,7 @@ const Webinar: React.FC = () => {
         }
         return []
     }
+    
     const [meetingParticipants, setMeetingParticipants] = useState<IMeetingParticipant[]>(getInitialParticipants())
     const [messageContent, setMessageContent] = useState("")
     const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
@@ -66,14 +64,14 @@ const Webinar: React.FC = () => {
 
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'X') {
-            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 2"}])
-
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Rita"}])
+            setMessageContent("")
         }
     });
 
     const addMessage = () => {
         if(messageContent !== "") {
-            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 1"}])
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Eu"}])
             setMessageContent("")
         }
     }
@@ -169,24 +167,13 @@ const Webinar: React.FC = () => {
     return (
         <WebinarContainer>
             <LeftContainer>
-                <HeaderContainer>
-                    <Logo src="logo.png" alt="logo" />
-                    <TitleContainer>
-                        <Title>
-                            <span>Webinar de Desenvolvimento de Produto</span>
-                        </Title>
-                            {participantWantsJoin &&
-                                <JoinParticipantContainer handleAllowParticipantJoin={handleAllowParticipantJoin}/>  
-                            }
-                            {paticipantAllowedMessage !== "" &&
-                                <ParticipantAllowedMessageContainer
-                                    participantWasAllowed={participantWasAllowed}
-                                    paticipantAllowedMessage={paticipantAllowedMessage}
-                                />
-                            }  
-                    </TitleContainer>
-                </HeaderContainer>
-                <Wrap>
+                <HeaderContainer
+                    participantWantsJoin={participantWantsJoin}
+                    handleAllowParticipantJoin={handleAllowParticipantJoin}
+                    participantWasAllowed={participantWasAllowed}
+                    paticipantAllowedMessage={paticipantAllowedMessage}
+                />
+                <MainVideoContainer>
                     <BgVideo>
                         <MainVideo src={isMainVideoOn ? "mainVideo.mp4": ""} muted autoPlay loop/>
                     </BgVideo>
@@ -211,7 +198,7 @@ const Webinar: React.FC = () => {
                             )
                         })}
                     </ParticipantsVideoContainer>
-                </Wrap>
+                </MainVideoContainer>
                 <MenuContainer
                     menuIconsList={menuIconsList}
                     checkState={checkState}

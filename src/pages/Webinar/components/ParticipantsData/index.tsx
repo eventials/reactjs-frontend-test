@@ -1,8 +1,15 @@
 import React from 'react'
 import {Container, ParticipanteName, ParticipantVideo} from './styles'
 
+interface IParticipant {
+    id: number;
+    name: string;
+    image: string;
+    isVideoOn: boolean;
+}
+
 interface IParticipantsData {
-    participant: any;
+    participant: IParticipant;
 }
 
 const ParticipantsData: React.FC<IParticipantsData> = ({ participant }) => {
