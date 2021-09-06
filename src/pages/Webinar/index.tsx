@@ -1,28 +1,15 @@
 import React, { useState } from 'react';
-import { MdSend } from 'react-icons/md';
-import TextField from '@material-ui/core/TextField';
 import Cookies from 'universal-cookie';
 import {
     WebinarContainer,
-    LeftContainer,
-    MainVideoContainer,
-    BgVideo,
-    MainVideo,
-    ParticipantsVideoContainer,
-    ParticipantsBox,
     RigthContainer,
     HeaderChat,
     ChatContainerBody
 } from "./styles";
-import JoinParticipantContainer from '../Webinar/components/JoinParticipantContainer'
 import { chatMessages, menuIconsList, participants } from './data';
-import ParticipantAllowedMessageContainer from './components/ParticipantAllowedMessageContainer';
-import ParticipantButtonsContainer from './components/ParticipantButtonsContainer';
-import ParticipantsData from './components/ParticipantsData'
-import MenuContainer from './components/MenuContainer'
 import MessageChatContainer from './components/MessageChatContainer'
 import MessageContainer from './components/MessageContainer'
-import HeaderContainer from './components/HeaderContainer'
+import LeftContainer from './components/LeftContainer'
 
 interface IMeetingParticipant {
     id: number;
@@ -166,45 +153,23 @@ const Webinar: React.FC = () => {
 
     return (
         <WebinarContainer>
-            <LeftContainer>
-                <HeaderContainer
-                    participantWantsJoin={participantWantsJoin}
-                    handleAllowParticipantJoin={handleAllowParticipantJoin}
-                    participantWasAllowed={participantWasAllowed}
-                    paticipantAllowedMessage={paticipantAllowedMessage}
-                />
-                <MainVideoContainer>
-                    <BgVideo>
-                        <MainVideo src={isMainVideoOn ? "mainVideo.mp4": ""} muted autoPlay loop/>
-                    </BgVideo>
-
-                    <ParticipantsVideoContainer>
-                        {meetingParticipants.map((participant) => {
-                            return (
-                                <ParticipantsBox
-                                    key={`${participant.name} - ${participant.id}`}
-                                    onMouseEnter={() => handleMouseEnter(participant.id)}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    {(isShowRemoveUser && participant.id === participantIdHover) &&
-                                        <ParticipantButtonsContainer
-                                            participant={participant}
-                                            handleParticipantVideoToggle={handleParticipantVideoToggle} 
-                                            handleRemoveParticipant={handleRemoveParticipant}
-                                        />
-                                    }
-                                    <ParticipantsData participant={participant} />
-                                </ParticipantsBox>
-                            )
-                        })}
-                    </ParticipantsVideoContainer>
-                </MainVideoContainer>
-                <MenuContainer
-                    menuIconsList={menuIconsList}
-                    checkState={checkState}
-                    handleClickMenuIcon={handleClickMenuIcon}
-                />
-            </LeftContainer> 
+            <LeftContainer
+                participantWantsJoin={participantWantsJoin}
+                handleAllowParticipantJoin={handleAllowParticipantJoin}
+                participantWasAllowed={participantWasAllowed}
+                paticipantAllowedMessage={paticipantAllowedMessage}
+                isMainVideoOn={isMainVideoOn}
+                meetingParticipants={meetingParticipants}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isShowRemoveUser={isShowRemoveUser}
+                participantIdHover={participantIdHover}
+                handleParticipantVideoToggle={handleParticipantVideoToggle}
+                handleRemoveParticipant={handleRemoveParticipant}
+                menuIconsList={menuIconsList}
+                checkState={checkState}
+                handleClickMenuIcon={handleClickMenuIcon}
+            />
             <RigthContainer>
                 <HeaderChat>
                     <p>Chat</p>

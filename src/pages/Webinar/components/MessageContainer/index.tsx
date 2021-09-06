@@ -23,7 +23,3 @@ const MessageContainer: React.FC<IMessageContainer> = ({ message }) => {
 }
 
 export default MessageContainer;
-
-
-
-                            
