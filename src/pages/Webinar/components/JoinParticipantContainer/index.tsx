@@ -17,7 +17,7 @@ const JoinParticipantContainer: React.FC<IJoinParticipantContainer> = ({handleAl
                     color="#FFBD2D"
                     title="Aceitar participante"
                     onClick={() => handleAllowParticipantJoin(true)}
-                    />
+                />
             </HeaderIconsContainer> 
             <HeaderIconsContainer>
                 <HiOutlineUserRemove
@@ -26,7 +26,6 @@ const JoinParticipantContainer: React.FC<IJoinParticipantContainer> = ({handleAl
                     title="Recusar participante"
                     onClick={() => handleAllowParticipantJoin(false)}
                 />
-                
             </HeaderIconsContainer>
         </Container>
     );

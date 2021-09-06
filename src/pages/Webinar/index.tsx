@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { RiUserAddLine } from 'react-icons/ri';
 import { MdSend } from 'react-icons/md';
-import { HiOutlineUserRemove } from 'react-icons/hi';
 import TextField from '@material-ui/core/TextField';
 import Cookies from 'universal-cookie';
 import {
@@ -18,25 +16,16 @@ import {
     ParticipantsBox,
     RigthContainer,
     HeaderChat,
-    ChatContainerBody,
-    MessageContainer,
-    MessageImage,
-    MessageContentContainer,
-    MessageParticipantName,
-    Message,
-    MessageChatContainer,
-    MessageChat,
-    MessageButton,
+    ChatContainerBody
 } from "./styles";
 import JoinParticipantContainer from '../Webinar/components/JoinParticipantContainer'
 import { chatMessages, menuIconsList, participants } from './data';
-import { FaRegWindowClose } from 'react-icons/fa';
-import { CgScreen } from 'react-icons/cg';
 import ParticipantAllowedMessageContainer from './components/ParticipantAllowedMessageContainer';
 import ParticipantButtonsContainer from './components/ParticipantButtonsContainer';
 import ParticipantsData from './components/ParticipantsData'
 import MenuContainer from './components/MenuContainer'
-
+import MessageChatContainer from './components/MessageChatContainer'
+import MessageContainer from './components/MessageContainer'
 
 interface IMeetingParticipant {
     id: number;
@@ -236,30 +225,15 @@ const Webinar: React.FC = () => {
                 <ChatContainerBody>
                     {chatMessagesList.map((message) => {
                         return (
-                            <MessageContainer>
-                                <MessageImage src="image8.png" alt={message.participantName} />
-                                <MessageContentContainer>
-                                    <MessageParticipantName>{message.participantName}</MessageParticipantName>
-                                    <Message>{message.content}</Message>
-                                </MessageContentContainer>
-                            </MessageContainer>
+                            <MessageContainer message={message} />
                         )
                     })}
                 </ChatContainerBody>
-                <MessageChatContainer>
-                    <MessageChat>
-                        <TextField
-                            className="inputMessage"
-                            value={messageContent}
-                            id="outlined-basic"
-                            label="Escreva sua mensagem"
-                            variant="outlined"
-                            size="small"
-                            onChange={(e) => setMessageContent(e.target.value)}
-                        />
-                        <MessageButton onClick={() => addMessage()}><MdSend size={20}/></MessageButton>
-                    </MessageChat>
-                </MessageChatContainer>
+                <MessageChatContainer
+                    messageContent={messageContent}
+                    setMessageContent={setMessageContent}
+                    addMessage={addMessage}
+                />
             </RigthContainer>
         </WebinarContainer>
     )

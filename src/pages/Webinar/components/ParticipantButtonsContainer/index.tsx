@@ -6,8 +6,7 @@ import { Container, TurnParticipantScreenOff, RemoveParticipantButton } from './
 interface IParticipantButtonsContainer {
     participant: any;
     handleParticipantVideoToggle: (participantId: number) => void;
-    handleRemoveParticipant: (participantId: number) => void
-
+    handleRemoveParticipant: (participantId: number) => void;
 }
 
 const ParticipantButtonsContainer: React.FC<IParticipantButtonsContainer> = ({
@@ -24,7 +23,6 @@ const ParticipantButtonsContainer: React.FC<IParticipantButtonsContainer> = ({
                     :
                     <CgScreen color="#FF0049" size={30}/>
                 }
-                
             </TurnParticipantScreenOff>
             <RemoveParticipantButton
                 title="Remover participante"
