@@ -1,14 +1,20 @@
 import React from 'react'
 import { Container, Message, MessageContentContainer, MessageImage, MessageParticipantName } from './styles';
 
+interface IMessage {
+    content: string;
+    participantName: string;
+    image: string;
+}
+
 interface IMessageContainer {
-  message: any
+    message: IMessage
 }
 
 const MessageContainer: React.FC<IMessageContainer> = ({ message }) => {
     return (
         <Container>
-            <MessageImage src="image8.png" alt={message.participantName} />
+            <MessageImage src={message.image} alt={message.participantName} />
             <MessageContentContainer>
                 <MessageParticipantName>{message.participantName}</MessageParticipantName>
                 <Message>{message.content}</Message>
@@ -18,7 +24,3 @@ const MessageContainer: React.FC<IMessageContainer> = ({ message }) => {
 }
 
 export default MessageContainer;
-
-
-
-                            

@@ -3,8 +3,15 @@ import { CgScreen } from 'react-icons/cg';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { Container, TurnParticipantScreenOff, RemoveParticipantButton } from './styles'
 
+interface IParticipant {
+    id: number;
+    name: string;
+    image: string;
+    isVideoOn: boolean;
+}
+
 interface IParticipantButtonsContainer {
-    participant: any;
+    participant: IParticipant;
     handleParticipantVideoToggle: (participantId: number) => void;
     handleRemoveParticipant: (participantId: number) => void;
 }

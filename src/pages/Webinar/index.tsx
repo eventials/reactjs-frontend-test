@@ -2,34 +2,26 @@ import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 import {
     WebinarContainer,
-    LeftContainer,
-    HeaderContainer,
-    Logo,
-    TitleContainer,
-    Title,
-    Wrap,
-    BgVideo,
-    MainVideo,
-    ParticipantsVideoContainer,
-    ParticipantsBox,
     RigthContainer,
     HeaderChat,
     ChatContainerBody
 } from "./styles";
-import JoinParticipantContainer from '../Webinar/components/JoinParticipantContainer'
-import { chatMessages, menuIconsList, participants } from './data';
-import ParticipantAllowedMessageContainer from './components/ParticipantAllowedMessageContainer';
-import ParticipantButtonsContainer from './components/ParticipantButtonsContainer';
-import ParticipantsData from './components/ParticipantsData'
-import MenuContainer from './components/MenuContainer'
+import { menuIconsList, participants } from './data';
 import MessageChatContainer from './components/MessageChatContainer'
 import MessageContainer from './components/MessageContainer'
+import LeftContainer from './components/LeftContainer'
 
 interface IMeetingParticipant {
     id: number;
     name: string;
     image: string;
     isVideoOn: boolean;
+}
+
+interface IMessage {
+    content: string;
+    participantName: string;
+    image: string;
 }
 
 const Webinar: React.FC = () => {
@@ -42,9 +34,10 @@ const Webinar: React.FC = () => {
         }
         return []
     }
+    
     const [meetingParticipants, setMeetingParticipants] = useState<IMeetingParticipant[]>(getInitialParticipants())
     const [messageContent, setMessageContent] = useState("")
-    const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
+    const [chatMessagesList, setChatMessagesList] = useState<IMessage[]>([])
     const [isMainVideoOn, setIsMainVideoOn] = useState(true)
     const [isMicrophoneOn, setIsMicrophoneOn] = useState(false)
     const [isShareScreenOn, setIsShareScreenOn] = useState(true)
@@ -64,14 +57,14 @@ const Webinar: React.FC = () => {
 
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'X') {
-            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 2"}])
-
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Rita", image: "image8.png"}])
+            setMessageContent("")
         }
     });
 
     const addMessage = () => {
         if(messageContent !== "") {
-            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Participante 1"}])
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Eu", image: "imageOwner.png"}])
             setMessageContent("")
         }
     }
@@ -166,56 +159,23 @@ const Webinar: React.FC = () => {
 
     return (
         <WebinarContainer>
-            <LeftContainer>
-                <HeaderContainer>
-                    <Logo src="logo.png" alt="logo" />
-                    <TitleContainer>
-                        <Title>
-                            <span>Webinar de Desenvolvimento de Produto</span>
-                        </Title>
-                            {participantWantsJoin &&
-                                <JoinParticipantContainer handleAllowParticipantJoin={handleAllowParticipantJoin}/>  
-                            }
-                            {paticipantAllowedMessage !== "" &&
-                                <ParticipantAllowedMessageContainer
-                                    participantWasAllowed={participantWasAllowed}
-                                    paticipantAllowedMessage={paticipantAllowedMessage}
-                                />
-                            }  
-                    </TitleContainer>
-                </HeaderContainer>
-                <Wrap>
-                    <BgVideo>
-                        <MainVideo src={isMainVideoOn ? "mainVideo.mp4": ""} muted autoPlay loop/>
-                    </BgVideo>
-
-                    <ParticipantsVideoContainer>
-                        {meetingParticipants.map((participant) => {
-                            return (
-                                <ParticipantsBox
-                                    key={`${participant.name} - ${participant.id}`}
-                                    onMouseEnter={() => handleMouseEnter(participant.id)}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    {(isShowRemoveUser && participant.id === participantIdHover) &&
-                                        <ParticipantButtonsContainer
-                                            participant={participant}
-                                            handleParticipantVideoToggle={handleParticipantVideoToggle} 
-                                            handleRemoveParticipant={handleRemoveParticipant}
-                                        />
-                                    }
-                                    <ParticipantsData participant={participant} />
-                                </ParticipantsBox>
-                            )
-                        })}
-                    </ParticipantsVideoContainer>
-                </Wrap>
-                <MenuContainer
-                    menuIconsList={menuIconsList}
-                    checkState={checkState}
-                    handleClickMenuIcon={handleClickMenuIcon}
-                />
-            </LeftContainer> 
+            <LeftContainer
+                participantWantsJoin={participantWantsJoin}
+                handleAllowParticipantJoin={handleAllowParticipantJoin}
+                participantWasAllowed={participantWasAllowed}
+                paticipantAllowedMessage={paticipantAllowedMessage}
+                isMainVideoOn={isMainVideoOn}
+                meetingParticipants={meetingParticipants}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isShowRemoveUser={isShowRemoveUser}
+                participantIdHover={participantIdHover}
+                handleParticipantVideoToggle={handleParticipantVideoToggle}
+                handleRemoveParticipant={handleRemoveParticipant}
+                menuIconsList={menuIconsList}
+                checkState={checkState}
+                handleClickMenuIcon={handleClickMenuIcon}
+            />
             <RigthContainer>
                 <HeaderChat>
                     <p>Chat</p>
