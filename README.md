@@ -1,43 +1,39 @@
-# Teste Frontend React
+# Desafio frontend vídeo chamada
 
-  O intuito desse desafio é avaliar seus conhecimentos técnicos em React e JavaScript.
+Construção de uma aplicação React com uma tela simulando uma vídeo chamada e uma tela de login.\
+O layout foi construído utilizando um monitor de referência de 15".\
+![imagem tela video chamada](public/telaVideoChamada.png?raw=true)
+Para a construção do layout me inspirei no [design](https://dribbble.com/shots/14088308/attachments/5709284?mode=media).
 
-  Crie, utilizando ReactJS, uma aplicação que simula a visualização do dono (chamaremos de owner) de uma vídeo chamada com N participantes.
+## Libs utilizadas
 
-  Faça o fork desse repositório
+Typescript\
+React Router Dom\
+Universal cookie\
+Json web token\
+Styled components\
+Material Ui\
+React icons\
 
-## Requisitos
-  - A aplicação deve possuir uma tela que gera o JWT e faz o registro do cookie "auth_token", essa tela pode conter apenas um botão que escreve o cookie ou pode ser uma tela de login completa (fica a seu critério)
-  - A aplicação deve possuir uma tela que simula a visualização do ponto de vista do owner (todos os participantes serão apenas simulados no frontend dessa tela).
-          - Não é necessário ter a conexão real entre os participantes
-          - Para simular a camera de cada um utilize um vídeo qualquer.
-  - Inclua uma forma de simular a entrada do participante (atalho de teclado, função atribuida ao objeto window ex: window.addParticipant("Participant Name")).
-          - O owner deve poder aceitar/recusar que um participante entre
-          - A qualquer momento o owner pode remover um participante específico da chamada ou desativar seu canal de vídeo
-  - Seja criativo para criar o comportamento do grid para quantidades diferentes de usuário (como a tela se comporta quando só existe 1 usuário online? 4? 8? 12?)
-  - Utilize o localStorage para armazenar o estado da aplicação de forma que se o owner recarregar a página ele volte com todos os participantes, já aceitos, em tela.
-  - A interface da sala de chamada deve ser uma rota privada, liberada apenas se o usuário possuir um cookie "auth_token" que armazena um JWT de autenticação.
+### Configurando o projeto
 
-## Utilize
-  - React hooks
-  - React context
-  - React Router Dom
-  - Styled components
-  - Typescript
-  - Framework de UI de sua preferência (MaterialUI, Antdesign, Bootstrap...)
+Clone o projeto com o comando `git clone`;\
+Para instalar as dependências utilize `yarn install` ou `npm install`;\
+Inicialize a aplicação com `yarn start`;
 
-## Envio
-  Faça um Pull Request para esse repositório
+### Features
 
-
-## Prazo
-  3 dias
-
-## Avaliação
-
-  - Sua aplicação preenche os requerimentos básicos?
-  - Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-  - Você seguiu as instruções de envio do desafio?
-  - O seu código é organizado e bem componentizado?
-  - O seu código é legível?
-  - Sua solução tem uma boa usabilidade?
+**Página de login**\
+Aceita qualquer combinação de caracteres para o email e senha, nenhum dos dois campos pode ficar em branco.\
+Ao logar, será gerado um `cookie` com chave `auth_token` e cujo valor é um JWT criado a partir do email, e você será direcionado para a página do webinar.\
+\
+**Página do webinar**\
+Essa página mostra um vídeo simulando a tela do owner, então o vídeo principal (maior) é do owner e os vídeos menores dos outros participantes.\
+Para adicionar outros participantes pressione as teclas `CTRL+SHIFT+Z`, uma mensagem aparecerá na parte superior direita da página e você tem a opção de aceitar ou rejeitar o participante.\
+É possível também excluir ou desativar a câmera de um participante, para isso posicione o cursor sobre o vídeo do participante de interesse e aparecerá 2 ícones: remover participante e desligar/ligar vídeo.\
+Dos botões presentes na parte inferior central da tela, o primeiro desativa ou ativa a câmera do owner.\
+O último botão sai da chamada e você será redirecionado para a página de login. O cookie de autenticação (JTW) e o local storage serão limpos.\
+Os outros botões não tem funções implementadas.\
+No chat é possível escrever e enviar mensagem. Caso queira enviar mensagem como outro participante, digite a mensagem e pressione as teclas `CTRL+SHIFT+X`.\
+Os ids dos participantes presentes na chamada estão guardados no local storage, dessa forma, ao recarregar a página ela volta com todos os participantes já aceitos.\
+É possível adicionar 12 participantes.
