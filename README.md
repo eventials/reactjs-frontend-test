@@ -1,6 +1,8 @@
 # Desafio frontend vídeo chamada
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Construção de uma aplicação React com uma tela simulando uma vídeo chamada e uma tela de login.\
+O layout foi construído utilizando um monitor de referência de 15".\
+![imagem tela video chamada](public/telaVideoChamada.png?raw=true)
 
 ## Libs utilizadas
 
@@ -16,7 +18,7 @@ React icons\
 
 Clone o projeto com o comando `git clone`;\
 Para instalar as dependências utilize `yarn install` ou `npm install`;\
-Inicialize a aplicação com `yarn start`;\
+Inicialize a aplicação com `yarn start`;
 
 ### Features
 
@@ -33,31 +35,9 @@ O último botão sai da chamada e você será redirecionado para a página de lo
 Os outros botões não tem funções implementadas.\
 No chat é possível escrever e enviar mensagem. Caso queira enviar mensagem como outro participante, digite a mensagem e pressione as teclas `CTRL+SHIFT+X`.\
 Os ids dos participantes presentes na chamada estão guardados no local storage, dessa forma, ao recarregar a página ela volta com todos os participantes já aceitos.\
+É possível adicionar 12 participantes.\
+\
+Para a construção do layout me inspirei no [design](https://dribbble.com/shots/14088308/attachments/5709284?mode=media).
 
 
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
