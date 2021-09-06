@@ -21,13 +21,6 @@ export const participants = [
     new Participant(12, "Vivian", "video13.mp4", true),
 ]
 
-export let chatMessages = [
-    {content: "Oi", participantName: "Rita"},
-    {content: "Tudo bem?", participantName: "Rita"},
-    {content: "Sobre o projeto...", participantName: "Rita"},
-    {content: "Ficou ótimo", participantName: "Rita"},
-]
-
 export let menuIconsList = [
     new MenuIcon("isVideoOn", FiVideo, FiVideoOff, 35, "#6200FF", "handleCamera", "Câmera"),
     new MenuIcon("isMicrophoneOn", BsMic, BsMicMute, 30, "#FFBD2D", "handleAudio", "Microfone"),

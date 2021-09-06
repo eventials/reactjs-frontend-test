@@ -16,6 +16,7 @@ export const MessageImage = styled.img`
     height: 50px;
     border-radius: 50px;
     margin-right: 10px;
+    object-fit: cover;
 `
 
 export const MessageContentContainer = styled.div`

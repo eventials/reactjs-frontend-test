@@ -4,6 +4,7 @@ import { Container, Message, MessageContentContainer, MessageImage, MessageParti
 interface IMessage {
     content: string;
     participantName: string;
+    image: string;
 }
 
 interface IMessageContainer {
@@ -13,7 +14,7 @@ interface IMessageContainer {
 const MessageContainer: React.FC<IMessageContainer> = ({ message }) => {
     return (
         <Container>
-            <MessageImage src="image8.png" alt={message.participantName} />
+            <MessageImage src={message.image} alt={message.participantName} />
             <MessageContentContainer>
                 <MessageParticipantName>{message.participantName}</MessageParticipantName>
                 <Message>{message.content}</Message>

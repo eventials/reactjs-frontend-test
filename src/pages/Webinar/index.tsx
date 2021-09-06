@@ -6,7 +6,7 @@ import {
     HeaderChat,
     ChatContainerBody
 } from "./styles";
-import { chatMessages, menuIconsList, participants } from './data';
+import { menuIconsList, participants } from './data';
 import MessageChatContainer from './components/MessageChatContainer'
 import MessageContainer from './components/MessageContainer'
 import LeftContainer from './components/LeftContainer'
@@ -16,6 +16,12 @@ interface IMeetingParticipant {
     name: string;
     image: string;
     isVideoOn: boolean;
+}
+
+interface IMessage {
+    content: string;
+    participantName: string;
+    image: string;
 }
 
 const Webinar: React.FC = () => {
@@ -31,7 +37,7 @@ const Webinar: React.FC = () => {
     
     const [meetingParticipants, setMeetingParticipants] = useState<IMeetingParticipant[]>(getInitialParticipants())
     const [messageContent, setMessageContent] = useState("")
-    const [chatMessagesList, setChatMessagesList] = useState(chatMessages)
+    const [chatMessagesList, setChatMessagesList] = useState<IMessage[]>([])
     const [isMainVideoOn, setIsMainVideoOn] = useState(true)
     const [isMicrophoneOn, setIsMicrophoneOn] = useState(false)
     const [isShareScreenOn, setIsShareScreenOn] = useState(true)
@@ -51,14 +57,14 @@ const Webinar: React.FC = () => {
 
     window.addEventListener("keydown", function(event) {
         if (event.ctrlKey && event.shiftKey && event.key === 'X') {
-            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Rita"}])
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Rita", image: "image8.png"}])
             setMessageContent("")
         }
     });
 
     const addMessage = () => {
         if(messageContent !== "") {
-            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Eu"}])
+            setChatMessagesList([...chatMessagesList, {content: messageContent, participantName: "Eu", image: "imageOwner.png"}])
             setMessageContent("")
         }
     }
