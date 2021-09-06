@@ -184,7 +184,7 @@ const Webinar: React.FC = () => {
                     <Logo src="logo.png" alt="logo" />
                     <TitleContainer>
                         <Title>
-                            <span>UX/UI Design Conference Meeting</span>
+                            <span>Webinar de Desenvolvimento de Produto</span>
                         </Title>
                             {participantWantsJoin &&
                                 <JoinParticipantContainer handleAllowParticipantJoin={handleAllowParticipantJoin}/>  
