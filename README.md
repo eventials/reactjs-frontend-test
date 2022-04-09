@@ -1,43 +1,46 @@
-# Teste Frontend React
+# Getting Started with Create React App
 
-  O intuito desse desafio é avaliar seus conhecimentos técnicos em React e JavaScript.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-  Crie, utilizando ReactJS, uma aplicação que simula a visualização do dono (chamaremos de owner) de uma vídeo chamada com N participantes.
+## Available Scripts
 
-  Faça o fork desse repositório
+In the project directory, you can run:
 
-## Requisitos
-  - A aplicação deve possuir uma tela que gera o JWT e faz o registro do cookie "auth_token", essa tela pode conter apenas um botão que escreve o cookie ou pode ser uma tela de login completa (fica a seu critério)
-  - A aplicação deve possuir uma tela que simula a visualização do ponto de vista do owner (todos os participantes serão apenas simulados no frontend dessa tela).
-          - Não é necessário ter a conexão real entre os participantes
-          - Para simular a camera de cada um utilize um vídeo qualquer.
-  - Inclua uma forma de simular a entrada do participante (atalho de teclado, função atribuida ao objeto window ex: window.addParticipant("Participant Name")).
-          - O owner deve poder aceitar/recusar que um participante entre
-          - A qualquer momento o owner pode remover um participante específico da chamada ou desativar seu canal de vídeo
-  - Seja criativo para criar o comportamento do grid para quantidades diferentes de usuário (como a tela se comporta quando só existe 1 usuário online? 4? 8? 12?)
-  - Utilize o localStorage para armazenar o estado da aplicação de forma que se o owner recarregar a página ele volte com todos os participantes, já aceitos, em tela.
-  - A interface da sala de chamada deve ser uma rota privada, liberada apenas se o usuário possuir um cookie "auth_token" que armazena um JWT de autenticação.
+### `yarn start`
 
-## Utilize
-  - React hooks
-  - React context
-  - React Router Dom
-  - Styled components
-  - Typescript
-  - Framework de UI de sua preferência (MaterialUI, Antdesign, Bootstrap...)
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Envio
-  Faça um Pull Request para esse repositório
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
+### `yarn test`
 
-## Prazo
-  3 dias
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Avaliação
+### `yarn build`
 
-  - Sua aplicação preenche os requerimentos básicos?
-  - Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-  - Você seguiu as instruções de envio do desafio?
-  - O seu código é organizado e bem componentizado?
-  - O seu código é legível?
-  - Sua solução tem uma boa usabilidade?
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
