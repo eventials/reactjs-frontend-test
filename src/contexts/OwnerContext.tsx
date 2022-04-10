@@ -2,7 +2,7 @@ import { createContext, ReactNode, useState } from "react";
 import { useCookies } from "react-cookie";
 import { v4 as uuid } from "uuid";
 
-type Owner = {
+export type Owner = {
   id: string;
   name: string;
   video: string;
@@ -26,19 +26,13 @@ export function OwnerContextProvider(props: OwnerContextProviderProps) {
   const [, setCookie, removeCookie] = useCookies(["auth_token"]);
 
   async function createWebinar(ownerName: string) {
-    const newOwner = {
-      id: uuid(),
-      name: ownerName,
-      video: "",
-    };
-
     // Houve a tentativa de utilizar a lib jsonwebtoken para gerar o token, mas exigiria uma configuração
     // adicional do webpack, sendo necessário fazer o eject do create-react-app e configurar manualmente
     // para evitar isso optei por simplificar o funcionamento, mantendo um JWT fixo.
     const ownerToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1Njc4OTAiLCJuYW1lIjoiSm9obiBEb2UiLCJ2aWRlbyI6IiJ9.GAmXpVnPKqqrE_K2Ln8OgCmS8EBrOg0juPAHEfU_Swk";
 
-    setOwner({ ...newOwner, token: ownerToken });
+    setOwner({ id: uuid(), name: ownerName, video: "", token: ownerToken });
 
     setCookie("auth_token", ownerToken, { path: "/" });
   }

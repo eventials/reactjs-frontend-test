@@ -23,13 +23,10 @@ export function Home() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    ownerName
-      ? createWebinar(ownerName)
-          .then(() => {
-            navigate("/webinar-room");
-          })
-          .catch((e) => console.warn(e))
-      : alert("Você deve preencher o campo com um nome para continuar.");
+    if (ownerName) {
+      await createWebinar(ownerName);
+      navigate("/webinar-room");
+    } else alert("Você deve preencher o campo com um nome para continuar.");
   }
 
   return (

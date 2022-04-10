@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { CookiesProvider } from "react-cookie";
+import { OwnerContextProvider } from "./contexts/OwnerContext";
 import App from "./App";
 
 import "./styles/global.css";
@@ -10,7 +11,9 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     <CookiesProvider>
-      <App />
+      <OwnerContextProvider>
+        <App />
+      </OwnerContextProvider>
     </CookiesProvider>
   </React.StrictMode>
 );
