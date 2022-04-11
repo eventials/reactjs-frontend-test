@@ -28,5 +28,7 @@ Quanto ao token, tentei utilizar as libs `jsonwebtoken`, porém por algum motivo
 
 Outra dificuldade foi em adicionar o atalho. Tentei adicionar um `eventListener` na `window`, porém estava disparando muitas funções e acabava ~(não sei porquê)~ zerando o estado dos participantes no `WebinarStore`. 
 
+E por fim, na hora de abrir a MR, acabei fazendo uma cagadinha e exclui sem querer a main. Precisei fazer o fork da aplicação novamente;
+
 > Figura 1 - Print erro do node:
 > ![image](https://user-images.githubusercontent.com/27309546/162657637-d89550e3-58f2-4c43-893d-6edc05810c19.png)
