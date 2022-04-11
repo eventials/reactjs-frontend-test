@@ -1,43 +1,32 @@
-# Teste Frontend React
+## Como rodar
+Instale as dependencias com `npm i`
+Execute o comando `npm start`
+## Sobre o desenvolvimento
 
-  O intuito desse desafio é avaliar seus conhecimentos técnicos em React e JavaScript.
+### Libs:
+- React Router DOM v6
+- FakerJS
+- Styled components
+- Chakra UI
+- React Icons
 
-  Crie, utilizando ReactJS, uma aplicação que simula a visualização do dono (chamaremos de owner) de uma vídeo chamada com N participantes.
+### Solução
 
-  Faça o fork desse repositório
+Para a solução, me inspirei um pouco no design do meet do google. Utilizei o [Chackra UI](https://chakra-ui.com) para agilizar a estilização de boa parte dos componentes. Ainda assim para algumas partes, preferi utilizar o próprio styled-components e as tags nativas do HTML. Para salvar as informações do webinar, utilizei a ContextAPI para guardar os estados compartilhados entre os componentes, como a página de `Login` e a página do `Webinar`. 
+Para persisitras as informações da reunião, utilizei o `localStorage`.
 
-## Requisitos
-  - A aplicação deve possuir uma tela que gera o JWT e faz o registro do cookie "auth_token", essa tela pode conter apenas um botão que escreve o cookie ou pode ser uma tela de login completa (fica a seu critério)
-  - A aplicação deve possuir uma tela que simula a visualização do ponto de vista do owner (todos os participantes serão apenas simulados no frontend dessa tela).
-          - Não é necessário ter a conexão real entre os participantes
-          - Para simular a camera de cada um utilize um vídeo qualquer.
-  - Inclua uma forma de simular a entrada do participante (atalho de teclado, função atribuida ao objeto window ex: window.addParticipant("Participant Name")).
-          - O owner deve poder aceitar/recusar que um participante entre
-          - A qualquer momento o owner pode remover um participante específico da chamada ou desativar seu canal de vídeo
-  - Seja criativo para criar o comportamento do grid para quantidades diferentes de usuário (como a tela se comporta quando só existe 1 usuário online? 4? 8? 12?)
-  - Utilize o localStorage para armazenar o estado da aplicação de forma que se o owner recarregar a página ele volte com todos os participantes, já aceitos, em tela.
-  - A interface da sala de chamada deve ser uma rota privada, liberada apenas se o usuário possuir um cookie "auth_token" que armazena um JWT de autenticação.
+### Conteúdo
 
-## Utilize
-  - React hooks
-  - React context
-  - React Router Dom
-  - Styled components
-  - Typescript
-  - Framework de UI de sua preferência (MaterialUI, Antdesign, Bootstrap...)
-
-## Envio
-  Faça um Pull Request para esse repositório
+- Página do login
+> Simples página com um formulário para adicionar o nome ao entrar.
+- Página do webinar
+> Contém um componente de controles da reunião (botão de mudo apenas muda o estado). Além disso também é possível remover pessoas da reunião ao clicar na imagem do usuário escolhido.
 
 
-## Prazo
-  3 dias
+### Dificuldades:
+Quanto ao token, tentei utilizar as libs `jsonwebtoken`, porém por algum motivo, gerava um erro _(figura 1)_ muito estranho que estava relacionado com a minha versão do node, e depois de pesquisas, decidi "criar" um token fake, apenas para validar se o usuário poderia acessar a reunião.
 
-## Avaliação
+Outra dificuldade foi em adicionar o atalho. Tentei adicionar um `eventListener` na `window`, porém estava disparando muitas funções e acabava ~(não sei porquê)~ zerando o estado dos participantes no `WebinarStore`. 
 
-  - Sua aplicação preenche os requerimentos básicos?
-  - Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-  - Você seguiu as instruções de envio do desafio?
-  - O seu código é organizado e bem componentizado?
-  - O seu código é legível?
-  - Sua solução tem uma boa usabilidade?
+> Figura 1 - Print erro do node:
+> ![image](https://user-images.githubusercontent.com/27309546/162657637-d89550e3-58f2-4c43-893d-6edc05810c19.png)
