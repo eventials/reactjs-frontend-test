@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-export function ProtectedRoute({ owner, redirectPath = "/" }: any) {
-  if (!owner) {
+export function ProtectedRoute({ cookie, redirectPath = "/" }: any) {
+  if (!cookie) {
     return <Navigate to={redirectPath} replace />;
   }
 

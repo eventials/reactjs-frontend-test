@@ -38,7 +38,7 @@ export function OwnerContextProvider(props: OwnerContextProviderProps) {
   }
 
   async function endWebinar() {
-    // Remove jwt cookie and end Webinar logic
+    setOwner(undefined);
     removeCookie("auth_token");
   }
 
