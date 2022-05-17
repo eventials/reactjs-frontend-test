@@ -1,4 +1,5 @@
 import BaseInput from "./BaseInput";
 import BaseButton from "./BaseButton";
+import BaseModal from "./BaseModal";
 
-export { BaseInput, BaseButton };
+export { BaseInput, BaseButton, BaseModal };
