@@ -1,5 +1,4 @@
 import { SxProps } from "@mui/material";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 export interface BaseInputProps {
@@ -8,6 +7,7 @@ export interface BaseInputProps {
   variant?: "outlined" | "filled" | "standard";
   label: string;
   sx: SxProps;
+  type?: string;
 }
 
 export default function BaseInput({
@@ -25,6 +25,7 @@ export default function BaseInput({
       sx={{ width: "100%", ...sx }}
       value={value}
       onChange={onChange}
+      {...props}
     />
   );
 }

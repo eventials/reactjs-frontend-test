@@ -1,21 +1,41 @@
 import { BaseInput } from "components";
 import { Button, Container, LoginWrapper } from "./styles";
 import { MdArrowForwardIos } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookie } from "hooks/useCookie";
 
 interface loginFormProps {
-  email: string;
+  username: string;
   password: string;
 }
+const FAKE_JWT =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 export default function Login() {
+  const [cookie, setCookie] = useCookie({
+    key: "auth_token",
+    defaultValue: null,
+  });
+
   const [loginForm, setLoginForm] = useState<loginFormProps>({
-    email: "",
+    username: "",
     password: "",
   });
 
   const navigate = useNavigate();
+
+  function onClickLogin() {
+    if (!loginForm.username || !loginForm.password) return;
+    console.log(FAKE_JWT);
+    setCookie(FAKE_JWT);
+  }
+
+  useEffect(() => {
+    if (cookie) {
+      navigate("/home");
+    }
+  }, [cookie]);
 
   return (
     <Container>
@@ -23,9 +43,9 @@ export default function Login() {
         <BaseInput
           label="Usuário*"
           onChange={(event) =>
-            setLoginForm((prev) => ({ ...prev, email: event.target.value }))
+            setLoginForm((prev) => ({ ...prev, username: event.target.value }))
           }
-          value={loginForm.email}
+          value={loginForm.username}
           sx={{ marginBottom: "16px" }}
         />
         <BaseInput
@@ -33,12 +53,13 @@ export default function Login() {
           onChange={(event) =>
             setLoginForm((prev) => ({ ...prev, password: event.target.value }))
           }
+          type="password"
           value={loginForm.password}
           sx={{ marginBottom: "32px" }}
         />
         <Button
           text="Entrar"
-          onClick={() => navigate("/home")}
+          onClick={() => onClickLogin()}
           endIcon={<MdArrowForwardIos />}
         />
       </LoginWrapper>
