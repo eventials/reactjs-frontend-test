@@ -1,8 +1,10 @@
 import { CloseIcon, Container, ProfileUser } from "./styles";
 import ReactPlayer from "react-player";
+import { useState } from "react";
 
 interface user {
   name: string;
+  id: string;
 }
 
 interface playerConfig {
@@ -11,50 +13,26 @@ interface playerConfig {
 }
 
 interface userCardProps {
-  isOwner?: boolean;
-  user?: user;
-  index: number;
-  onDeleteUser?: (index: number) => void;
-  playerConfig: playerConfig;
+  user: user;
+  onDeleteUser: (id: string) => void;
 }
 
-export default function UserCard({
-  isOwner,
-  user,
-  index,
-  onDeleteUser,
-  playerConfig,
-}: userCardProps) {
+export default function UserCard({ user, onDeleteUser }: userCardProps) {
+  const [isMouseEnter, setIsMouseEnter] = useState<boolean>(false);
+
   function getFirstLetterName() {
     return user?.name.charAt(0).toUpperCase();
   }
 
   return (
-    <Container isOwner={isOwner}>
-      {!isOwner && (
-        <>
-          <CloseIcon onClick={() => onDeleteUser && onDeleteUser(index)} />
-          <ProfileUser>{getFirstLetterName()}</ProfileUser>
-        </>
+    <Container
+      onMouseEnter={() => setIsMouseEnter(true)}
+      onMouseLeave={() => setIsMouseEnter(false)}
+    >
+      {isMouseEnter && (
+        <CloseIcon onClick={() => onDeleteUser && onDeleteUser(user.id)} />
       )}
-
-      {isOwner && (
-        <>
-          {playerConfig.showVideo ? (
-            <ReactPlayer
-              url={
-                "https://www.youtube.com/watch?v=Qq3OiHQ-HCU&ab_channel=KonstantinosKazakos"
-              }
-              controls={false}
-              width="100%"
-              height="100%"
-              muted={playerConfig.mute}
-            />
-          ) : (
-            <ProfileUser>{getFirstLetterName()}</ProfileUser>
-          )}
-        </>
-      )}
+      <ProfileUser>{getFirstLetterName()}</ProfileUser>
     </Container>
   );
 }

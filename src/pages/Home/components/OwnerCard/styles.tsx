@@ -4,19 +4,14 @@ import { AiOutlineClose } from "react-icons/ai";
 
 export const Container = styled.div`
   background-color: white;
-  height: 100px;
-  width: 100px;
+  height: 80vh;
+  width: 100%;
   margin: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease-in-out;
   position: relative;
-  border-radius: 4px;
-  @media screen and (max-width: 600px) {
-    height: 50px;
-    width: 50px;
-  }
 
   &:hover {
     cursor: pointer;
@@ -41,10 +36,4 @@ export const ProfileUser = styled.div`
   background: blue;
   font-size: 36px;
   font-weight: bold;
-
-  @media screen and (max-width: 600px) {
-    height: 40px;
-    width: 40px;
-    font-size: 21px;
-  }
 `;

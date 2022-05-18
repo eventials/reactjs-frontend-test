@@ -11,28 +11,52 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const UsersWrapper = styled.div<Props>`
+export const UsersContainer = styled.div<Props>`
   display: flex;
   width: 100%;
-  /* max-width: 26vw; */
   max-width: ${({ showUsers }) => (showUsers ? "26vw" : "0vw")};
   flex-wrap: wrap;
   height: 100%;
   max-height: fit-content;
-  overflow: scroll;
+  overflow-y: scroll;
   justify-content: center;
   transition: all 0.3s ease-in-out;
+
   ::-webkit-scrollbar {
-    width: 10px; /* width of the entire scrollbar */
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    background: none; /* color of the tracking area */
+    background: none;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: white; /* color of the scroll thumb */
-    border-radius: 20px; /* roundness of the scroll thumb */
+    background-color: white;
+    border-radius: 20px;
+  }
+`;
+export const UsersWrapper = styled.div<Props>`
+  display: flex;
+  width: 100%;
+  max-width: ${({ showUsers }) => (showUsers ? "26vw" : "0vw")};
+  flex-wrap: wrap;
+  height: fit-content;
+  max-height: fit-content;
+  overflow-y: scroll;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
   }
 `;
 
@@ -54,6 +78,12 @@ export const IconContainer = styled.div`
   border-radius: 50%;
   background: blue;
   margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const ActionsWrapper = styled.div`

@@ -40,7 +40,7 @@ export const useCookie = ({
 }: UseCookiesOptions): [string, Dispatch<SetStateAction<string>>] => {
   const getCookie = () => getItem(key) || defaultValue;
   const [cookie, setCookie] = useState(() => getCookie());
-
+  
   useEffect(() => {
     setItem(key, cookie);
   }, [cookie, key]);

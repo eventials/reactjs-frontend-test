@@ -27,7 +27,6 @@ export default function Login() {
 
   function onClickLogin() {
     if (!loginForm.username || !loginForm.password) return;
-    console.log(FAKE_JWT);
     setCookie(FAKE_JWT);
   }
 

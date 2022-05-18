@@ -13,6 +13,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: 6,
 };
 
 interface BaseModalProps {
@@ -33,7 +34,7 @@ export default function BaseModal({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      {children}
+      <Box sx={ style }>{children}</Box>
     </Modal>
   );
 }

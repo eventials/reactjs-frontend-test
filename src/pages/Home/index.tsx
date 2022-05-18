@@ -6,6 +6,7 @@ import {
   UsersWrapper,
   IconContainer,
   ArrowIcon,
+  UsersContainer,
 } from "./styles";
 import {
   BsFillCameraVideoFill,
@@ -13,32 +14,27 @@ import {
   BsFillMicFill,
   BsFillMicMuteFill,
 } from "react-icons/bs";
+import { RiShutDownLine } from "react-icons/ri";
 
 import { useContext, useEffect, useState } from "react";
 import ModalAddUser from "./components/ModalAddUser";
-import { config } from "process";
 import { UserContext } from "context";
 import { useCookie } from "hooks/useCookie";
 import { useNavigate } from "react-router-dom";
-
-interface user {
-  name: string;
-}
-interface playerConfig {
-  mute: boolean;
-  showVideo: boolean;
-}
+import OwnerCard from "./components/OwnerCard";
+import { v4 as uuid } from "uuid";
 
 type ActionType = "mute" | "showVideo";
 
 type PlayerConfig = Record<ActionType, boolean>;
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const { usersList, setUsersList } = useContext(UserContext);
-  const [cookie] = useCookie({
+  const [cookie, setCookie] = useCookie({
     key: "auth_token",
   });
-  const navigate = useNavigate();
 
   const [toggleModal, setToggleModal] = useState(false);
   const [showUsers, setShowUsers] = useState(true);
@@ -72,50 +68,82 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    if (usersList.length === 0) {
+      setShowUsers(false);
+    } else {
+      setShowUsers(true);
+    }
+  }, [usersList]);
+
+  useEffect(() => {
+    function listener(event: KeyboardEvent) {
+      if (event.key === "u") {
+        setToggleModal(true);
+        event.preventDefault();
+      }
+    }
+
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
+
   function onAddUser(name: string) {
-    setUsersList((prev) => [...prev, { name }]);
+    setUsersList((prev) => [...prev, { name, id: uuid() }]);
     setToggleModal(false);
   }
 
-  function onDeleteUser(index: number) {
-    setUsersList((prev) => prev.filter((_, i) => i !== index));
+  function onDeleteUser(id: string) {
+    setUsersList((prev) => prev.filter((user) => user.id !== id));
+  }
+
+  function onShutdownCall() {
+    setCookie("");
+    setUsersList([]);
+    navigate("/");
   }
 
   return (
     <Container>
       <OwnerWrapper showUsers={showUsers}>
-        <ArrowIcon
-          size="30px"
-          showUsers={showUsers}
-          onClick={() => setShowUsers(!showUsers)}
-        />
-        <UserCard isOwner={true} index={0} playerConfig={playerConfig} />
+        {usersList.length > 0 && (
+          <ArrowIcon
+            size="30px"
+            showUsers={showUsers}
+            onClick={() => setShowUsers(!showUsers)}
+          />
+        )}
+
+        <OwnerCard playerConfig={playerConfig} />
 
         <ActionsWrapper>
           {actions.map((action) => (
-            <IconContainer onClick={action.onClick}>
+            <IconContainer onClick={action.onClick} key={action.value}>
               {playerConfig[action.value]
                 ? action.activeIcon
                 : action.disabledIcon}
             </IconContainer>
           ))}
 
-          <button onClick={() => setToggleModal(true)}>add</button>
+          <IconContainer
+            onClick={() => onShutdownCall()}
+            style={{ background: "red" }}
+          >
+            <RiShutDownLine size="21px" />
+          </IconContainer>
         </ActionsWrapper>
       </OwnerWrapper>
 
-      <UsersWrapper showUsers={showUsers}>
-        {usersList.length > 0 &&
-          usersList.map((user, index) => (
-            <UserCard
-              isOwner={false}
-              user={user}
-              onDeleteUser={onDeleteUser}
-              index={index}
-              playerConfig={playerConfig}
-            />
-          ))}
-      </UsersWrapper>
+      <UsersContainer showUsers={showUsers}>
+        <UsersWrapper showUsers={showUsers}>
+          {usersList.length > 0 &&
+            usersList.map((user) => (
+              <UserCard user={user} onDeleteUser={onDeleteUser} key={user.id} />
+            ))}
+        </UsersWrapper>
+      </UsersContainer>
 
       {toggleModal && (
         <ModalAddUser

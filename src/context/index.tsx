@@ -3,6 +3,7 @@ import { createContext, ReactNode, SetStateAction, Dispatch } from "react";
 
 interface User {
   name: string;
+  id: string;
 }
 
 type UserContextType = {
