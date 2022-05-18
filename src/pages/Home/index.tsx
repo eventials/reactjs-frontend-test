@@ -76,8 +76,12 @@ export default function Home() {
   useEffect(() => {
     function listener(event: KeyboardEvent) {
       if (event.key === "u") {
-        setToggleModalAddUser(true);
-        event.preventDefault();
+        const target = event.target as HTMLElement;
+
+        if (!["INPUT", "TEXTAREA"].includes(target.nodeName)) {
+          setToggleModalAddUser(true);
+          event.preventDefault();
+        }
       }
     }
 
@@ -93,7 +97,7 @@ export default function Home() {
 
   function onAddUser(name: string) {
     if (!name) return;
-    
+
     setRequestedUser(name);
     setToggleModalAddUser(false);
     setOpenModalUserRequest(true);
