@@ -92,6 +92,8 @@ export default function Home() {
   }, []);
 
   function onAddUser(name: string) {
+    if (!name) return;
+    
     setRequestedUser(name);
     setToggleModalAddUser(false);
     setOpenModalUserRequest(true);
