@@ -1,9 +1,9 @@
 import { BaseInput } from "components";
 import { Button, Container, LoginWrapper } from "./styles";
 import { MdArrowForwardIos } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookie } from "hooks/useCookie";
+import { AuthContext } from "context/AuthContext";
 
 interface loginFormProps {
   username: string;
@@ -13,10 +13,7 @@ const FAKE_JWT =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 export default function Login() {
-  const [cookie, setCookie] = useCookie({
-    key: "auth_token",
-    defaultValue: null,
-  });
+  const { token, setToken } = useContext(AuthContext);
 
   const [loginForm, setLoginForm] = useState<loginFormProps>({
     username: "",
@@ -27,14 +24,14 @@ export default function Login() {
 
   function onClickLogin() {
     if (!loginForm.username || !loginForm.password) return;
-    setCookie(FAKE_JWT);
+    setToken(FAKE_JWT);
   }
 
   useEffect(() => {
-    if (cookie) {
+    if (token) {
       navigate("/home");
     }
-  }, [cookie]);
+  }, [token, navigate]);
 
   return (
     <Container>

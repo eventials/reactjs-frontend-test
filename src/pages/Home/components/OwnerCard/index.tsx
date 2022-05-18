@@ -1,10 +1,6 @@
 import { Container, ProfileUser } from "./styles";
 import ReactPlayer from "react-player";
 
-interface user {
-  name: string;
-}
-
 interface playerConfig {
   mute: boolean;
   showVideo: boolean;

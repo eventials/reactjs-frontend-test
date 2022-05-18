@@ -5,16 +5,16 @@ interface UseCookiesOptions {
   defaultValue?: string | null | undefined;
 }
 
-const parseJson = (string: string) => {
+function parseJson(string: string) {
   try {
     const stringToObject = JSON.parse(string);
     return stringToObject;
   } catch (e) {
     return string;
   }
-};
+}
 
-const getItem = (key: string) => {
+function getItem(key: string) {
   const cookies = document.cookie.split("; ");
 
   for (const currentCookie of cookies) {
@@ -25,22 +25,27 @@ const getItem = (key: string) => {
   }
 
   return "";
-};
+}
 
-const setItem = (key: string, value: string) => {
-  if (typeof value === "object") {
+function setItem(key: string, value: string) {
+  if (value && typeof value === "object") {
     value = JSON.stringify(value);
   }
-  document.cookie = `${key}=${value}; path=/`;
-};
+
+  if (!value) {
+    document.cookie = `${key}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+  } else {
+    document.cookie = `${key}=${value || ""}; path=/`;
+  }
+}
 
 export const useCookie = ({
   key,
   defaultValue = "",
-}: UseCookiesOptions): [string, Dispatch<SetStateAction<string>>] => {
+}: UseCookiesOptions): [string, Dispatch<SetStateAction<string | null>>] => {
   const getCookie = () => getItem(key) || defaultValue;
   const [cookie, setCookie] = useState(() => getCookie());
-  
+
   useEffect(() => {
     setItem(key, cookie);
   }, [cookie, key]);

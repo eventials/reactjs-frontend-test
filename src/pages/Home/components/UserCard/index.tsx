@@ -1,15 +1,9 @@
 import { CloseIcon, Container, ProfileUser } from "./styles";
-import ReactPlayer from "react-player";
 import { useState } from "react";
 
 interface user {
   name: string;
   id: string;
-}
-
-interface playerConfig {
-  mute: boolean;
-  showVideo: boolean;
 }
 
 interface userCardProps {

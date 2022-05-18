@@ -18,11 +18,13 @@ import { RiShutDownLine } from "react-icons/ri";
 
 import { useContext, useEffect, useState } from "react";
 import ModalAddUser from "./components/ModalAddUser";
-import { UserContext } from "context";
-import { useCookie } from "hooks/useCookie";
+import { UserContext } from "context/UserContext";
 import { useNavigate } from "react-router-dom";
 import OwnerCard from "./components/OwnerCard";
 import { v4 as uuid } from "uuid";
+import ModalUserRequest from "./components/ModalUserRequest";
+import { AuthContext } from "context/AuthContext";
+import ModalAlertOwner from "./components/ModalAlertOwner";
 
 type ActionType = "mute" | "showVideo";
 
@@ -32,12 +34,13 @@ export default function Home() {
   const navigate = useNavigate();
 
   const { usersList, setUsersList } = useContext(UserContext);
-  const [cookie, setCookie] = useCookie({
-    key: "auth_token",
-  });
+  const { setToken } = useContext(AuthContext);
 
-  const [toggleModal, setToggleModal] = useState(false);
+  const [openModalAlertUser, setOpenModalAlertUser] = useState(false);
+  const [toggleModalAddUser, setToggleModalAddUser] = useState(false);
+  const [openModalUserRequest, setOpenModalUserRequest] = useState(false);
   const [showUsers, setShowUsers] = useState(true);
+  const [requestedUser, setRequestedUser] = useState<string | null>(null);
   const [playerConfig, setPlayerConfig] = useState<PlayerConfig>({
     mute: false,
     showVideo: true,
@@ -63,12 +66,6 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    if (!cookie) {
-      navigate("/");
-    }
-  }, []);
-
-  useEffect(() => {
     if (usersList.length === 0) {
       setShowUsers(false);
     } else {
@@ -79,7 +76,7 @@ export default function Home() {
   useEffect(() => {
     function listener(event: KeyboardEvent) {
       if (event.key === "u") {
-        setToggleModal(true);
+        setToggleModalAddUser(true);
         event.preventDefault();
       }
     }
@@ -90,9 +87,14 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    setOpenModalAlertUser(true);
+  }, []);
+
   function onAddUser(name: string) {
-    setUsersList((prev) => [...prev, { name, id: uuid() }]);
-    setToggleModal(false);
+    setRequestedUser(name);
+    setToggleModalAddUser(false);
+    setOpenModalUserRequest(true);
   }
 
   function onDeleteUser(id: string) {
@@ -100,9 +102,19 @@ export default function Home() {
   }
 
   function onShutdownCall() {
-    setCookie("");
+    setToken(null);
     setUsersList([]);
     navigate("/");
+  }
+
+  function onAcceptUser(name: string) {
+    setUsersList((prev) => [...prev, { name: name, id: uuid() }]);
+    setOpenModalUserRequest(false);
+  }
+
+  function onRejectUser() {
+    setOpenModalUserRequest(false);
+    setRequestedUser(null);
   }
 
   return (
@@ -145,10 +157,27 @@ export default function Home() {
         </UsersWrapper>
       </UsersContainer>
 
-      {toggleModal && (
+      {openModalAlertUser && (
+        <ModalAlertOwner
+          toggleModal={openModalAlertUser}
+          setToggleModal={setOpenModalAlertUser}
+        />
+      )}
+
+      {openModalUserRequest && (
+        <ModalUserRequest
+          toggleModal={openModalUserRequest}
+          setToggleModal={setOpenModalUserRequest}
+          requestedUser={requestedUser}
+          onAcceptUser={onAcceptUser}
+          onRejectUser={onRejectUser}
+        />
+      )}
+
+      {toggleModalAddUser && (
         <ModalAddUser
-          toggleModal={toggleModal}
-          setToggleModal={setToggleModal}
+          toggleModal={toggleModalAddUser}
+          setToggleModal={setToggleModalAddUser}
           onAddUser={onAddUser}
         />
       )}

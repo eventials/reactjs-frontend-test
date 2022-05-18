@@ -1,13 +1,16 @@
-import { UserContextProvider } from "context";
+import { UserContextProvider } from "context/UserContext";
+import { AuthContextProvider } from "context/AuthContext";
 import Routing from "routes";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <UserContextProvider>
-        <Routing />
-      </UserContextProvider>
+      <AuthContextProvider>
+        <UserContextProvider>
+          <Routing />
+        </UserContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }
