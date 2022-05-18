@@ -80,6 +80,7 @@ export default function Home() {
 
         if (!["INPUT", "TEXTAREA"].includes(target.nodeName)) {
           setToggleModalAddUser(true);
+          setOpenModalAlertUser(false)
           event.preventDefault();
         }
       }
