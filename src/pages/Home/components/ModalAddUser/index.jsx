@@ -16,6 +16,7 @@ export default function ModalAddUser({
           label="Digite o nome do usuário"
           onChange={(event) => setName(event.target.value)}
           sx={{ mb: "16px" }}
+          autoFocus
         />
         <BaseButton
           text="Adicionar"
