@@ -9,12 +9,12 @@
 ## Requisitos
   - A aplicação deve possuir uma tela que gera o JWT e faz o registro do cookie "auth_token", faça uma tela de login completa;
   - A aplicação deve possuir uma tela que simula a visualização do ponto de vista do owner (todos os participantes serão apenas simulados no frontend dessa tela);
-          - Não é necessário ter a conexão real entre os participantes;
-          - Capture o dispositivo de vídeo e a entrada de áudio para o owner;
-          - Utilize um vídeo qualquer para simular os outros participantes.
+          * Não é necessário ter a conexão real entre os participantes;
+          * Capture o dispositivo de vídeo e a entrada de áudio para o owner;
+          * Utilize um vídeo qualquer para simular os outros participantes.
   - Inclua uma forma de simular a entrada do participante (atalho de teclado, função atribuida ao objeto window ex: window.addParticipant("Participant Name")).
-          - O owner deve poder aceitar/recusar que um participante entre;
-          - A qualquer momento o owner pode remover um participante específico da chamada ou desativar seu microfone.
+          * O owner deve poder aceitar/recusar que um participante entre;
+          * A qualquer momento o owner pode remover um participante específico da chamada ou desativar seu microfone.
   - Simule um dashboard onde o owner consegue ter várias chamadas de vídeo, mas só pode escolher uma para entrar;
   - Seja criativo para criar o comportamento do grid para quantidades diferentes de usuário (como a tela se comporta quando só existe 1 usuário online? 4? 8? 12?);
   - Utilize o localStorage para armazenar o estado da aplicação de forma que se o owner recarregar a página ele volte com todos os participantes, já aceitos, em tela;
